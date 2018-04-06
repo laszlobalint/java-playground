@@ -1,0 +1,4 @@
+Hydraulic Volvo 340 10 Lorry IFA 100 115
+Hydraulic Mercedes 350 15 Lorry Mercedes 150 160
+Hydraulic Skania 360 12 Lorry Raba 160 130
+Hydraulic Skoda 320 17 Lorry IFA 120 140

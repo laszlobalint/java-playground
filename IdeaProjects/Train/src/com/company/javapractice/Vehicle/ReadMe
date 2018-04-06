@@ -1,0 +1,14 @@
+1. Készíts osztályt Vonat néven és helyezd a jarmu csomagba. A vonatnak legyen kiinduló- és végállomása (szöveg), ezek távolsága (szám, km) és az átlagsebesség (szám, km/h). Az adatok láthatósága olyan legyen, hogy a későbbi gyerekosztályokból is el lehessen érni őket, de máshonnan nem. Minden adattaghoz írj publikus gettert és settert. Az osztálynak legyen egy konstruktora, ami az adattagokat várja paraméterként. Ezen felül legyen egy leghamarabb metódusa, ami az út megtételéhez szükséges legkisebb idővel (távolság / átlagsebesség) tér vissza. Definiáld felül a toString metódust is, hogy a következő formában adja vissza az adatokat:
+kiindulás – végállomás (távolság km), átlseb km/h
+2. Készíts egy osztályt a jarmu csomagba Tehervonat néven, amely a Vonat osztályból származik. Tárolni kell róla a rakományt (szöveg) és annak mennyiségét (szám, t). Ezek láthatósága legyen privát. Minden adattaghoz írj publikus gettert és settert. Az osztálynak legyen egy konstruktora, ami a Vonat osztály konstruktorának paraméterein felül a rakomány nevét és mennyiségét is várja paraméterül. Definiáld felül a toString metódust, hogy a következő formában adja vissza az adatokat (figyelj az egyezésekre):
+Tehervonat: rakomány (mennyiség t), kiindulás – végállomás (távolság km), átlseb km/h
+3. Készíts egy osztályt a jarmu csomagba Szemelyvonat néven, amely a Vonat osztályból származik. Tárolni kell róla a megállók számát. Ennek láthatóság legyen privát. Írj hozzá gettert és settert, a megállók száma nem lehet 2-nél kisebb. Az osztálynak legyen egy konstruktora, ami a Vonat osztály konstruktorának paraméterein felül a megállók számát is várja paraméterül. Definiáld felül a leghamarabb metódust, hogy a végállomásokon felüli megállókért (megállók száma - 2) 6 percet (0,1 h) adjon az időhöz. Definiáld felül a toString metódust, hogy a következő formában adja vissza az adatokat (figyelj az egyezésekre):
+Személyvonat: megállók megálló kiindulás – végállomás (távolság km), átlseb km/h
+4. Készíts egy futtatható osztályt a jarmu csomagon kívül Vasut néven. A main metódus a parancssori paraméterek alapján hozzon létre Vonat példányokat (csak teher- és személyvonat lehet) és írja ki őket a képernyőre. Végül válassza ki azt a vonatot, ami a leggyorsabban képes teljesíteni útvonalát, és írja ki a képernyőre a vonatot és a szükséges időt. Példa:
+$ java Vasut teher Algyő Dunaújváros 280 70 olaj 2500 személy Szeged Békéscsaba 93 70 13 személy Párizs London 500 300 2
+Tehervonat: olaj (2500 t) Algyő – Dunaújváros (280 km), 70 km/h
+Személyvonat: 13 megálló Szeged – Békéscsaba (93 km), 70 km/h
+Személyvonat: 2 megálló Párizs – London (500 km), 300 km/h
+Leghamarabb:
+Személyvonat: 2 megálló Párizs – London (500 km), 300 km/h
+Idő: 1.6667 h

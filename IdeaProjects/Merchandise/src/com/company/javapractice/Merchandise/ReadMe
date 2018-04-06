@@ -1,0 +1,29 @@
+1.)Írj egy  aru nevű interface-t, melynek egyetlen metódusa van csak, mégpedig egy joMeg, mely nem vár paramétereket és igaz/hamis-al tér vissza. A joMeg metodus RosszMinoseg kivetelt dobhat. Helyezd az osztályt a raktar csomagba.
+
+2.)Írd meg a RosszMinoseg kivel osztályt és helyezd a kivetel csomagba. (5 pont)
+
+3.)Írj egy Gyümölcs és egy Tejtermék osztályt, melyek implementálják az aru interfészt. Gyümölcsök esetén, a joMeg metódus a következőképp működik, minden esetben generál egy véletlen számot 1 és 6 között, és ha 3 az értéke, akkor RosszMinoseg kivételt dobjon a következő szöveggel: “Ez a gyümölcs megromlott, én nem venném meg...”, ezenfelül ha páros a szám akkor igaz, minden egyéb esetben pedig hamis értékkel térjen vissza. A gyümölcs osztály konstruktora a gyümölcs nevét várja. A Tejtermék osztály esetén tartsunk fenn egy szavatossági változót, amely azt tárolja, hogy meddig jó az adott tejtermék és egy név adattagot, melyben tárolja a tejtermék nevét. A konsturktora a tejterméknek várjon egy időpontot (gyártási) és egy szavatossági idő paraméter, név paraméter, majd inicializálja azokat. A joMeg metodus a következőképp működjön, kérjük le a jelenlegi időt másodpercekben és vonjuk ki a gyártási időből, ha nem lépte túl a szavatossági időt térjünk vissza igaz értékkel különben dobjunk egy RosszMinoseg kivételt a következő szöveggel: “A termék lejárt szavatossági idővel rendelkezik”. Az idő mérésére használd a következőt:
+
+long vetel = System.currentTimeMillis(); // vetel : 1336375889609  - példa kimenet
+
+Mint látható a metódus ms-ban adja meg az eltelt időt, ehhez kell igazítani a konstruktorban szereplő értéket!
+
+Mindkét osztály legyen kiíratható!
+
+4.)Írj egy futtatható osztályt Leltar néven, amely a többi csomagon kívűl helyezkedik el, amely egy input.csv fileból olvas be értékeket. Egy input.csv file tartalma a következőképp néz ki:
+
+3
+
+T;150000;1336375889609;Tej
+
+Gy;Barack
+
+T;350000;1336375900000;Tejföl
+
+Ahol az értékek a következőt jelölik, az első az hogy hány termék szerepel a file-ban, a többi sorban:
+
+T esetén tejtermékről van szó, az első paraméter a szavatossági idő, a következő a gyártási idő majd a név
+
+Gy esetén gyümölcs amely a gyümölcs nevét tárolja
+
+Hozz létre két listát, melyben eltárolod a gyümölcsöket és a tejtermékeket. Miután végigjártad a listát, ellenőrizd le, melyek azok az elemek amelyek még eladhatóak és melyek amelyek nem. Ezeket írjuk is ki egy-egy file-ba mégpedig rossz aru esetén a kuka.csv-be jó áru esetén pedig a mehet a polcra.csv-be. Kiiratásnál is próbáld betartani a csv szabályait, azaz minden legyen egy ;-vel elválasztva. Ne feledkezz meg a hibák lekezeléséről sem!

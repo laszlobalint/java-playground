@@ -1,0 +1,52 @@
+Minesweeper maxolás (setTimeout; results Json, alfLimit (11 mellé 0, 17 mellé 1, 23 mellé 2 stb.)
+Database (kezelőfelület)
+ATM (folyamatos fájlba írás gondja és a menüben maradás)
+MySQL szűrés és parancsok
+anagramma keresés ->
+MySQL táblamásolás -> diagram frissítés
+
+9. Írj egy programot ami egy általad választott adatból kiszámítja egy tetraéder felszínét és térfogatát!
+10. Írj egy programot ami egy általad választott adatból kiszámítja egy hexaéder felszínét és térfogatát!
+11. Írj egy programot ami egy általad választott adatból kiszámítja egy oktaéder felszínét és térfogatát!
+12. Írj egy programot ami egy általad választott adatból kiszámítja egy ikozaéder felszínét és térfogatát!
+13. Írj egy programot ami egy általad választott adatból kiszámítja egy dodekaéder felszínét és térfogatát!
+14. Írj egy programot ami adott nehézségi gyorsulás (g=9,81 m/s^2) mellett a kilövési szög és a kezdõsebesség alapján kiszámolja, hogy hol lesz a kilõtt test a felhasználó által megadott idõ múlva.
+Számítsd ki azt is, hogy mikor és hol éri el a röppálya maximálismagasságát. Nem kell számolnod a légellenállással és feltételezd, hogy a terep sík.
+https://hu.wikipedia.org/wiki/Ferde_haj%C3%ADt%C3%A1s
+https://www.omnicalculator.com/physics/projectile-motion
+g =    aO =    vo =    t =    hely = ?       max. magasság = ?
+
+3. Készítsen egy olyan programot, amely a másodfokú egyenlet megoldó képlete alapján a valós számkörben megadja egy ax2+bx+c alakú másodfokú egyenlet gyökeit! A bemenő adatokat (a,b,c) a felhasználótól kérje be!
+5. Készíts programot, ami bemut	atja a normál és a maradékos osztás közötti különbséget.
+6. Készíts programot, amely bekér egy számot, majd kiírja, hogy osztható-e 2-vel vagy 3-mal!
+7. Készíts programot, amely két adott sztringet megjelenít, az egyiket kisbetűs, a másikat nagybetűs formában!
+8. Készíts programot, amely 10-től 20-ig generál két véletlen egész számot! Majd kiírja a két szám összegét, valamint szorzatát.
+9.  Készíts programot, ami generál két véletlen egész számot [0;100] intervallumban. A nagyobbik számból vonja ki a kisebbet, és írja ki a végeredményt.
+10. Készítsen egy olyan programot, amely véletlen számokkal tölt fel egy 100 elemű egész típusú tömböt, majd megkeresi és kiírja a konzolra a tömbben levő legnagyobb és legkisebb számot!
+"A másodfokú egyenlet megoldóképletében a gyökjel alatti részt az egyenlet diszkriminánsának nevezzük: {\displaystyle D\ =b^{2}-4ac\,\!} D\ =b^{2}-4ac\,\!
+Ha valós együtthatós az egyenlet, akkor D>0 esetén 2 valós, D=0 esetén egy valós (kettős gyök), D<0 esetén pedig 2 nem valós, komplex gyöke van."
+GETTING RANDOM NUMBERS IN JAVA: https://stackoverflow.com/questions/5887709/getting-random-numbers-in-java
+
+EXPRESS:
+1. Írd meg a models/user.js fájlba a négy metódust (getAll, get, create, destroy)
+1.1. A get -hez nézz utána find array method-nak
+1.2. A create adja vissza az újonnan létrehozott object-et
+1.3. A destroy a get segítégével kérje le a törlendő elemet
+2. Használja a user model -t (userModel néven behúzva) a users controller.
+2.1. Az index a getAll -t
+2.2. A show a get-et
+2.3. A create a create -t
+2.4. A destroy a destroy-t
+3. Csináld meg ugyanezt a Role erőforrással is.
+
+1. Írj egy UresAutomata osztályt (az automata csomagba kerüljön), mely rendelkezzen bedobott pénz értéke, gépben rendelkezésre álló poharak száma, használható-e adattagokkal. A későbbi gyerekosztályban láthatóak legyenek az adattagok, de máshol ne! Készítsünk paraméteres konstruktort, mely az UresAutomata objektum mezőit inicializálja a paraméterek alapján. Definiáljuk felül a toString metódust, mely szöveges formában megjeleníti, hogy az objektum állapota „használható" vagy „nem használható", valamint megjeleníti a bedobott pénzértéket. Készítsünk getter és setter metódusokat az adattagokhoz. Készítsünk egy penztBedob metódust, mely vár egy egész típusú számot. UresAutomata esetén definiáljuk, hogy a függvényhívás ezt jelenítse meg: „Ez az automata nincs feltöltve, nem használható".
+2. Írjunk egy ItalAutomata osztályt (ami az UresAutomata osztályból származik) az automata csomagba. Új adattagként adjuk meg, hogy az automata hideg vagy meleg italokat szolgáltat.
+Készítsünk getter és setter metódust az új adattaghoz. Készítsünk paraméteres konstruktort, mely vár egy rendelkezésre álló poharak száma, és egy igaz/hamis értéket, attól függően, hogy hideg (true) vagy meleg (false) italokat szolgáltat a gép. Inicializáljuk a fenti két adattagot a paraméterek szerint, a bedobott pénz értékét definiáljuk nullára, a használható-e attribútumot IGAZ-ra. Definiáljuk felül a toString metódust, mely az ősosztály toString-je után hozzáfűzi: „ez a gép hideg italokat árusít" vagy „ez a gép meleg italokat árusít". Definiáljuk felül a penztBedob metódust, mely vár egy egész típusú számot (ez jelenti azt, hogy mennyi pénzt dobtak be az automatába) A metódus írjon ki bizonyos szövegeket a következők szerint:
+95 Ft-ért lehet teát kérni.
+- Ha nincs egy darab pohár se, vagy nem működőképes üzemmódban van az italautomata, írjuk ki: „Próbálkozzon később"
+- Ha 95 Ft-nál kevesebbet adtak meg, írjuk ki: „Kevés a bedobott pénz"
+- Ha többet adtak meg, írjuk ki, hogy Sikeresen kiadtuk a teát, és a visszajáró pénz mennyiségét.
+- Ha sikeres volt a tranzakció (csak akkor) vonjunk le egyet a rendelkezésre álló poharakból, valamint növeljük a bedobott pénzt a megfelelő értékkel.
+3. Írjunk egy Forgalmazo nevű futtatható osztályt, amely maradjon csomagon kívüli (de lássa az automata csomagot). Készítsünk egy statikus informacio nevű metódust, mely vár egy ital automatát paraméterként, (a forgalmazó cég számára ad információkat), mely megjeleníti a következő adatokat: hány alkalommal lehet még használni az automatát, hogy ne fogyjon el a pohárkészlet, valamint mekkora összeg található a készülékben. A main-ben hozzunk létre egy ital automatát a parancssori paraméterek segítségével, amelyek ebben a sorrendben következnek (2 paraméter érkezik): Rendelkezésre álló poharak száma (int) majd true/false (hideg/meleg)
+Konstruktorban adjuk át ezeket, és hozzuk létre az objektumot.
+Vásároljunk 100 Ft-ért belőle, majd hívjuk meg a statikus informacio metódust az automatánkra.
