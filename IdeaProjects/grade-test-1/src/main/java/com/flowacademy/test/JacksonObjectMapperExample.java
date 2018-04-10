@@ -21,24 +21,24 @@ public class JacksonObjectMapperExample {
 
     public static void main(String[] args) throws IOException {
 
-        //read json file data to String
+        //Read json file data to String
         byte[] jsonData = Files.readAllBytes(Paths.get("example.json"));
 
-        //create ObjectMapper instance
+        //Create ObjectMapper instance
         ObjectMapper objectMapper = new ObjectMapper();
 
-        //convert json string to object
+        //Convert Json string to object
         Employee emp = objectMapper.readValue(jsonData, Employee.class);
 
         System.out.println("com.flowacademy.test.Employee Object\n" + emp);
 
-        //convert Object to json string
+        //Convert Object to Json string
         Employee emp1 = createEmployeeAndWriteFile();
 
-        //configure Object mapper for pretty print
+        //Configure Object mapper for pretty print
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
-        //writing to console, can write to any output stream such as file
+        //Writing to console, can write to any output stream such as file
         StringWriter stringEmp = new StringWriter();
         objectMapper.writeValue(stringEmp, emp1);
         System.out.println("com.flowacademy.test.Employee JSON is\n" + stringEmp);
