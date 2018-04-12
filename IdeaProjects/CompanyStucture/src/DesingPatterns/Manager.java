@@ -3,18 +3,17 @@ package DesingPatterns;
 public class Manager extends Subordinating implements Subordinated {
 
 
-    @Override
-    public void work(int hoursPerWeek) {
-        System.out.println("The manager works " + hoursPerWeek + " hours per week.");
+    public Manager(String name, double salary, int year, int month, int day) {
+        super(name, salary, year, month, day);
     }
 
     @Override
-    public void goHoliday(boolean isOnHoliday) {
-        System.out.println("The manager is on holiday: " + isOnHoliday);
+    public void work() {
+
     }
 
     @Override
-    public void getSalary(int DollarsPerMonth) {
-        System.out.println("The manager get " + DollarsPerMonth + " dollars per month.");
+    public void goHoliday() {
+
     }
 }

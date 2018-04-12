@@ -2,18 +2,18 @@ package DesingPatterns;
 
 public class Director extends Subordinating {
 
+
+    public Director(String name, double salary, int year, int month, int day) {
+        super(name, salary, year, month, day);
+    }
+
     @Override
-    public void work(int hoursPerWeek) {
+    public void work() {
 
     }
 
     @Override
-    public void goHoliday(boolean isOnHoliday) {
-
-    }
-
-    @Override
-    public void getSalary(int DollarsPerMonth) {
+    public void goHoliday() {
 
     }
 }

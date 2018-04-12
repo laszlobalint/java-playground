@@ -5,11 +5,13 @@ import org.jfree.chart.axis.LogarithmicAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.util.ArrayUtils;
 import org.jfree.data.xy.DefaultXYDataset;
 import javax.swing.*;
 import java.util.*;
-import java.util.stream.DoubleStream;
+
+//Runtime runtime = runtime.getRuntime();
+//double memory = runtime.totalMemory() - runtime.freeMemory();
+//memories[i] = memory;
 
 public class CompareCollections {
 
@@ -18,22 +20,22 @@ public class CompareCollections {
                 {1.5, 2.2, 4.6},
                 {5.7, 7.1, 8.9},
         };
-        drawDiagram(testDiagram, "3x3 matrix test diagram");
+        //drawDiagram(testDiagram, "3x3 matrix test diagram");
         drawDiagram(create2DArray(7), "Array filling up"); //Double diagram drawer works with 0-9.
         drawDiagram(linkedListGraph(7), "Linked List filling up");
         drawDiagram(arrayListGraph(7), "Array List filling up");
         drawDiagram(hashSetGraph(7), "Hash Set filling up");
         drawDiagram(treeSetGraph(7), "Tree Set filling up");
-        drawDiagram(arrayContains(7), "Array contains");
-        drawDiagram(linkedListContains(7), "Linked List contains");
-        drawDiagram(arrayListContains(7), "Array List contains");
-        drawDiagram(hashSetContains(7), "Hash Set contains");
-        drawDiagram(treeSetContains(7), "Tree Set contains");
-        drawDiagram(arrayListDelete(7), " Array set to null");
-        drawDiagram(linkedListDelete(7), "Linked List delete");
-        drawDiagram(arrayListDelete(7), "Array List delete");
-        drawDiagram(hashSetDelete(7), "Hash Set delete");
-        drawDiagram(treeSetDelete(7), "Tree Set delete");
+        //drawDiagram(arrayContains(7), "Array contains");
+        //drawDiagram(linkedListContains(7), "Linked List contains");
+        //drawDiagram(arrayListContains(7), "Array List contains");
+        //drawDiagram(hashSetContains(7), "Hash Set contains");
+        //drawDiagram(treeSetContains(7), "Tree Set contains");
+        //drawDiagram(arrayListDelete(7), " Array set to null");
+        //drawDiagram(linkedListDelete(7), "Linked List delete");
+        // drawDiagram(arrayListDelete(7), "Array List delete");
+        //drawDiagram(hashSetDelete(7), "Hash Set delete");
+        //drawDiagram(treeSetDelete(7), "Tree Set delete");
     }
 
     public static double[][] create2DArray(int num) {
@@ -50,13 +52,16 @@ public class CompareCollections {
         double number = 1;
         for (int i = 0; i < xValues.length; i++) {
             double[] array = new double[(int) xValues[i]];
-            startTime = System.nanoTime();
+            //startTime = System.nanoTime();
+            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
             for (int j = 0; j < xValues[i]; j++) {
                 array[j] = number;
                 number++;
             }
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            //endTime = System.nanoTime();
+            //yValues[i] = (endTime - startTime) / 1000000d;
+            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            yValues[i] = ((total2-total) / 124) / 124;
         }
         for (int counter = 1; counter < yValues.length; counter++) {
             if (yValues[counter] > max) {
@@ -70,28 +75,34 @@ public class CompareCollections {
     public static double[][] arrayContains(int num) {
         double[] xValues = new double[num];
         double[] yValues = new double[num];
+        long startTime;
+
+        long endTime;
         double x = 1;
         for (int i = 0; i < num; i++) {
             xValues[i] = x;
             x = x * 10;
         }
-        long startTime;
-        long endTime;
-        double number = 1;
         for (int i = 0; i < xValues.length; i++) {
             double[] array = new double[(int) xValues[i]];
             for (int j = 0; j < xValues[i]; j++) {
-                array[j] = number;
-                number++;
+                array[j] = j+1;
             }
-            startTime = System.nanoTime();
-            for (int k = 0; k < xValues[i]; k++) {
-                if (array[k] == xValues[i] - 1) {
-                    break;
+            double compare = array[array.length-1];
+            int k = 100;
+            long elapsedTime = 0;
+            while (k >= 0) {
+                startTime = System.nanoTime();
+                for (int j = 0; j < array.length; j++) {
+                    if (array[j] == compare) {
+                        break;
+                    }
                 }
                 endTime = System.nanoTime();
-                yValues[i] = (endTime - startTime) / 1000000d;
+                elapsedTime += (endTime - startTime);
+                k--;
             }
+            yValues[i] = (elapsedTime / 100d) / 1000000d;
         }
         return new double[][]{xValues, yValues};
     }
@@ -135,13 +146,16 @@ public class CompareCollections {
         double max = 0;
         for (int i = 0; i < xValues.length; i++) {
             LinkedList<Double> linkedList = new LinkedList <>();
-            startTime = System.nanoTime();
+            //startTime = System.nanoTime();
+            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
             for (int j = 0; j < xValues[i]; j++) {
                 linkedList.add(number);
                 number++;
             }
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            //endTime = System.nanoTime();
+            //yValues[i] = (endTime - startTime) / 1000000d;
+            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            yValues[i] = ((total2-total) / 124) / 124;
         }
         for (int counter = 1; counter < yValues.length; counter++) {
             if (yValues[counter] > max) {
@@ -169,10 +183,16 @@ public class CompareCollections {
                 linkedList.add(number);
                 number++;
             }
-            startTime = System.nanoTime();
-            linkedList.contains(i);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            int k = 100;
+            long elapsedTime = 0;
+            while (k >= 100) {
+                startTime = System.nanoTime();
+                linkedList.contains(i);
+                endTime = System.nanoTime();
+                elapsedTime += (endTime - startTime);
+                k--;
+            }
+            yValues[i] = (elapsedTime / 100d) / 1000000d;
         }
         return new double[][]{xValues, yValues};
     }
@@ -195,7 +215,7 @@ public class CompareCollections {
                 number++;
             }
             startTime = System.nanoTime();
-            linkedList.remove(0);
+            linkedList.remove(xValues[i] - 1);
             endTime = System.nanoTime();
             yValues[i] = (endTime - startTime) / 1000000d;
         }
@@ -216,13 +236,16 @@ public class CompareCollections {
         double max = 0;
         for (int i = 0; i < xValues.length; i++) {
             ArrayList<Double> arrayList = new ArrayList <>();
-            startTime = System.nanoTime();
+            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            //startTime = System.nanoTime();
             for (int j = 0; j < xValues[i]; j++) {
                 arrayList.add(number);
                 number++;
             }
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            //endTime = System.nanoTime();
+            //yValues[i] = (endTime - startTime) / 1000000d;
+            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            yValues[i] = ((total2-total) / 124) / 124;
         }
         for (int counter = 1; counter < yValues.length; counter++) {
             if (yValues[counter] > max) {
@@ -250,10 +273,16 @@ public class CompareCollections {
                 arrayList.add(number);
                 number++;
             }
-            startTime = System.nanoTime();
-            arrayList.contains(i);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            int k = 100;
+            long elapsedTime = 0;
+            while (k >= 100) {
+                startTime = System.nanoTime();
+                arrayList.contains(i);
+                endTime = System.nanoTime();
+                elapsedTime += (endTime -startTime);
+                k--;
+            }
+           yValues[i] = (elapsedTime / 100d) / 1000000d;
         }
         return new double[][]{xValues, yValues};
     }
@@ -276,7 +305,7 @@ public class CompareCollections {
                 number++;
             }
             startTime = System.nanoTime();
-            arrayList.remove(0);
+            arrayList.remove((double) xValues[i] - 1);
             endTime = System.nanoTime();
             yValues[i] = (endTime - startTime) / 1000000d;
         }
@@ -297,13 +326,16 @@ public class CompareCollections {
         double number = 1;
         for (int i = 0; i < xValues.length; i++) {
             HashSet<Double> hashSet = new HashSet <>();
-            startTime = System.nanoTime();
+            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            //startTime = System.nanoTime();
             for (int j = 0; j < xValues[i]; j++) {
                 hashSet.add(number);
                 number++;
             }
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            yValues[i] = ((total2-total) / 124) / 124;
+            //endTime = System.nanoTime();
+            //yValues[i] = (endTime - startTime) / 1000000d;
         }
         for (int counter = 1; counter < yValues.length; counter++) {
             if (yValues[counter] > max) {
@@ -331,10 +363,16 @@ public class CompareCollections {
                 hashSet.add(number);
                 number++;
             }
-            startTime = System.nanoTime();
-            hashSet.contains(i);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            int k = 100;
+            long elapsedTime = 0;
+            while (k >= 100) {
+                startTime = System.nanoTime();
+                hashSet.contains(i);
+                endTime = System.nanoTime();
+                elapsedTime += (endTime - startTime);
+                k--;
+            }
+            yValues[i] =  (elapsedTime / 100d) / 1000000d;
         }
         return new double[][]{xValues, yValues};
     }
@@ -357,7 +395,7 @@ public class CompareCollections {
                 number++;
             }
             startTime = System.nanoTime();
-            hashSet.remove(1);
+            hashSet.remove(xValues[i] - 1);
             endTime = System.nanoTime();
             yValues[i] = (endTime - startTime) / 1000000d;
         }
@@ -378,13 +416,16 @@ public class CompareCollections {
         double number = 1;
         for (int i = 0; i < xValues.length; i++) {
             TreeSet<Double> treeSet = new TreeSet <> ();
-            startTime = System.nanoTime();
+            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            //startTime = System.nanoTime();
             for (int j = 0; j < xValues[i]; j++) {
                 treeSet.add(number);
                 number++;
             }
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+            yValues[i] = ((total2-total) / 124) / 124;
+            //endTime = System.nanoTime();
+            //yValues[i] = (endTime - startTime) / 1000000d;
         }
         for (int counter = 1; counter < yValues.length; counter++) {
             if (yValues[counter] > max) {
@@ -412,10 +453,16 @@ public class CompareCollections {
                 treeSet.add((int)number);
                 number++;
             }
-            startTime = System.nanoTime();
-            treeSet.contains(i);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
+            int k = 100;
+            long elapsedTime = 0;
+            while (k >= 100) {
+                startTime = System.nanoTime();
+                treeSet.contains(i);
+                endTime = System.nanoTime();
+                elapsedTime += (endTime - startTime);
+                k--;
+            }
+            yValues[i] =  (elapsedTime / 100d) / 1000000d;
         }
         return new double[][]{xValues, yValues};
     }
@@ -438,7 +485,7 @@ public class CompareCollections {
                 number++;
             }
             startTime = System.nanoTime();
-            treeSet.remove(1d);
+            treeSet.remove(xValues[i] - 1);
             endTime = System.nanoTime();
             yValues[i] = (endTime - startTime) / 1000000d;
         }
@@ -463,7 +510,7 @@ public class CompareCollections {
 
     public static void drawDiagram(double[][] data, String title) {
         DefaultXYDataset ds = new DefaultXYDataset();
-        ds.addSeries("Binary search", data);
+        ds.addSeries("Collection", data);
         JFreeChart chart = ChartFactory.createXYLineChart(title, "input size", "time", ds,
                 PlotOrientation.VERTICAL, true, true, false);
 
