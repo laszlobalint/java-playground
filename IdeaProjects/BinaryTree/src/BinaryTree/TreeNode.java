@@ -1,9 +1,9 @@
 package BinaryTree;
 
 public class TreeNode {
-        private int value;
-        private TreeNode left;
-        private TreeNode right;
+        public int value;
+        public TreeNode left;
+        public TreeNode right;
 
     public TreeNode(int value, TreeNode left, TreeNode right) {
         this.value = value;

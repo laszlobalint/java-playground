@@ -79,7 +79,7 @@ public class PoemReadSort {
     }
 
 
-    public static boolean sortLocaleHun(String fileName) throws ParseException {
+    public static Map <String, Integer> sortLocaleHun(String fileName) throws ParseException {
 
         String hungarianRules = ("< a,A < á,Á < b,B < c,C < cs,Cs,CS < d,D < dz,Dz,DZ < dzs,Dzs,DZS" +
                 "< e,E < é,É < f,F < g,G < gy,Gy,GY < h,H < i,I < í,Í < j,J" +
@@ -140,7 +140,7 @@ public class PoemReadSort {
             System.out.println(pair.getKey() + "=" + pair.getValue());
             it.remove();
         }
-        return true;
+        return wordCount;
     }
 
     public static void sortStrings(Collator collator, List words) {
