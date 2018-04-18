@@ -31,7 +31,7 @@ public class Container implements Iterable {
     }
 
     public class Iterator implements DesingPatterns.Iterator {
-        private int pointer = 0;
+        private int pointer = -1;
         @Override
         public boolean hasNext() {
             if (pointer < size - 1) {
@@ -47,7 +47,7 @@ public class Container implements Iterable {
     }
 
     @Override
-    public Iterator getIterator() {
+    public Iterator iterator() {
         return new Iterator();
     }
 }

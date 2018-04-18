@@ -6,12 +6,9 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.DefaultXYDataset;
-import javax.swing.*;
-import java.util.*;
+import org.jfree.ui.RefineryUtilities;
 
-//Runtime runtime = runtime.getRuntime();
-//double memory = runtime.totalMemory() - runtime.freeMemory();
-//memories[i] = memory;
+import javax.swing.*;
 
 public class CompareCollections {
 
@@ -20,509 +17,100 @@ public class CompareCollections {
                 {1.5, 2.2, 4.6},
                 {5.7, 7.1, 8.9},
         };
-        //drawDiagram(testDiagram, "3x3 matrix test diagram");
-        drawDiagram(create2DArray(7), "Array filling up"); //Double diagram drawer works with 0-9.
-        drawDiagram(linkedListGraph(7), "Linked List filling up");
-        drawDiagram(arrayListGraph(7), "Array List filling up");
-        drawDiagram(hashSetGraph(7), "Hash Set filling up");
-        drawDiagram(treeSetGraph(7), "Tree Set filling up");
-        //drawDiagram(arrayContains(7), "Array contains");
-        //drawDiagram(linkedListContains(7), "Linked List contains");
-        //drawDiagram(arrayListContains(7), "Array List contains");
-        //drawDiagram(hashSetContains(7), "Hash Set contains");
-        //drawDiagram(treeSetContains(7), "Tree Set contains");
-        //drawDiagram(arrayListDelete(7), " Array set to null");
-        //drawDiagram(linkedListDelete(7), "Linked List delete");
-        // drawDiagram(arrayListDelete(7), "Array List delete");
-        //drawDiagram(hashSetDelete(7), "Hash Set delete");
-        //drawDiagram(treeSetDelete(7), "Tree Set delete");
-    }
+        //Draw test diagram:
+        //drawDiagram(testDiagram, "3x3 test diagram");
 
-    public static double[][] create2DArray(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double max = 0;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            double[] array = new double[(int) xValues[i]];
-            //startTime = System.nanoTime();
-            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            for (int j = 0; j < xValues[i]; j++) {
-                array[j] = number;
-                number++;
-            }
-            //endTime = System.nanoTime();
-            //yValues[i] = (endTime - startTime) / 1000000d;
-            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            yValues[i] = ((total2-total) / 124) / 124;
-        }
-        for (int counter = 1; counter < yValues.length; counter++) {
-            if (yValues[counter] > max) {
-                max = yValues[counter];
-            }
-        }
-        System.out.println("Highest time value for Array (case - num=7): " + max);
-        return new double[][]{xValues, yValues};
-    }
+        // Filling up time:
+        //drawDiagram(FillUpTime.arrayFillUp(7), "SimpleArray filling up time");
+        //drawDiagram(FillUpTime.linkedListFillUp(7), "LinkedList filling up time");
+        //drawDiagram(FillUpTime.arrayListFillUp(7), "ArrayList filling up time");
+        //drawDiagram(FillUpTime.hashSetFillUp(7), "HashSet filling up time");
+        //drawDiagram(FillUpTime.treeSetFillUp(7), "TreeSet filling up time");
 
-    public static double[][] arrayContains(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        long startTime;
+        // Contains time:
+        //drawDiagram(ContainsTime.arrayContains(7), "SimpleArray contains time");
+        //drawDiagram(ContainsTime.linkedListContains(7), "LinkedList contains time");
+        //drawDiagram(ContainsTime.arrayListContains(7), "ArrayList contains time");
+        //drawDiagram(ContainsTime.hashSetContains(7), "HashSet contains time");
+        //drawDiagram(ContainsTime.treeSetContains(7), "TreeSet contains time");
 
-        long endTime;
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        for (int i = 0; i < xValues.length; i++) {
-            double[] array = new double[(int) xValues[i]];
-            for (int j = 0; j < xValues[i]; j++) {
-                array[j] = j+1;
-            }
-            double compare = array[array.length-1];
-            int k = 100;
-            long elapsedTime = 0;
-            while (k >= 0) {
-                startTime = System.nanoTime();
-                for (int j = 0; j < array.length; j++) {
-                    if (array[j] == compare) {
-                        break;
-                    }
-                }
-                endTime = System.nanoTime();
-                elapsedTime += (endTime - startTime);
-                k--;
-            }
-            yValues[i] = (elapsedTime / 100d) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
+        // Remove time:
+        //drawDiagram(RemoveTime.arrayListRemove(7), "SimpleArray 'remove' time");
+        //drawDiagram(RemoveTime.linkedListRemove(7), "LinkedList remove time");
+        //drawDiagram(RemoveTime.arrayListRemove(7), "ArrayList remove time");
+        //drawDiagram(RemoveTime.hashSetRemove(7), "HashSet remove time");
+        //drawDiagram(RemoveTime.treeSetRemove(7), "TreeSet remove time");
 
-    public static double[][] arrayDelete(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            double[] array = new double[(int) xValues[i]];
-            for (int j = 0; j < xValues[i]; j++) {
-                array[j] = number;
-                number++;
-            }
-            startTime = System.nanoTime();
-            xValues[i - 1] = Double.parseDouble(null);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
+        // Filling up memory:
+        //drawDiagram(FillUpMemory.arrayFillUp(7), "SimpleArray filling up memory");
+        //drawDiagram(FillUpMemory.linkedListFillUp(7), "LinkedList filling up memory");
+        //drawDiagram(FillUpMemory.arrayListFillUp(7), "ArrayList filling up memory");
+        //drawDiagram(FillUpMemory.hashSetFillUp(7), "HashSet filling up memory");
+        //drawDiagram(FillUpMemory.treeSetFillUp(7), "TreeSet filling up memory");
 
-    public static double[][] linkedListGraph(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        double max = 0;
-        for (int i = 0; i < xValues.length; i++) {
-            LinkedList<Double> linkedList = new LinkedList <>();
-            //startTime = System.nanoTime();
-            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            for (int j = 0; j < xValues[i]; j++) {
-                linkedList.add(number);
-                number++;
-            }
-            //endTime = System.nanoTime();
-            //yValues[i] = (endTime - startTime) / 1000000d;
-            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            yValues[i] = ((total2-total) / 124) / 124;
-        }
-        for (int counter = 1; counter < yValues.length; counter++) {
-            if (yValues[counter] > max) {
-                max = yValues[counter];
-            }
-        }
-        System.out.println("Highest time value for Linked List (case - num=7): " + max);
-        return new double[][]{xValues, yValues};
-    }
+        // Contains memory:
+        //drawDiagram(ContainsMemory.arrayContains(7), "SimpleArray contains memory");
+        //drawDiagram(ContainsMemory.linkedListContains(7), "LinkedList contains memory");
+        //drawDiagram(ContainsMemory.arrayListContains(7), "ArrayList contains memory");
+        //drawDiagram(ContainsMemory.hashSetContains(7), "HashSet contains memory");
+        //drawDiagram(ContainsMemory.treeSetContains(7), "TreeSet contains memory");
 
-    public static double[][] linkedListContains(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            LinkedList<Double> linkedList = new LinkedList <>();
-            for (int j = 0; j < xValues[i]; j++) {
-                linkedList.add(number);
-                number++;
-            }
-            int k = 100;
-            long elapsedTime = 0;
-            while (k >= 100) {
-                startTime = System.nanoTime();
-                linkedList.contains(i);
-                endTime = System.nanoTime();
-                elapsedTime += (endTime - startTime);
-                k--;
-            }
-            yValues[i] = (elapsedTime / 100d) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
+        // Remove memory:
+        //drawDiagram(RemoveMemory.arrayRemove(7), "SimpleArray 'remove' memory");
+        //drawDiagram(RemoveMemory.linkedListRemove(7), "LinkedList remove memory");
+        //drawDiagram(RemoveMemory.arrayListRemove(7), "ArrayList remove memory");
+        //drawDiagram(RemoveMemory.hashSetRemove(7), "HashSet remove memory");
+        //drawDiagram(RemoveMemory.treeSetRemove(7), "TreeSet remove memory");
 
-    public static double[][] linkedListDelete(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            LinkedList<Double> linkedList = new LinkedList <>();
-            for (int j = 0; j < xValues[i]; j++) {
-                linkedList.add(number);
-                number++;
-            }
-            startTime = System.nanoTime();
-            linkedList.remove(xValues[i] - 1);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
+        double[][][] fillUpTimes = {FillUpTime.arrayFillUp(7), FillUpTime.linkedListFillUp(7), FillUpTime.arrayListFillUp(7), FillUpTime.hashSetFillUp(7), FillUpTime.treeSetFillUp(7)};
+        double[][][] fillUpMemories = {FillUpMemory.arrayFillUp(7), FillUpMemory.linkedListFillUp(7), FillUpMemory.arrayListFillUp(7), FillUpMemory.hashSetFillUp(7), FillUpMemory.treeSetFillUp(7)};
+        double[][][] containsTimes = {ContainsTime.arrayContains(7), ContainsTime.linkedListContains(7), ContainsTime.arrayListContains(7), ContainsTime.hashSetContains(7), ContainsTime.treeSetContains(7)};
+        double[][][] containsMemories = {ContainsMemory.arrayContains(7), ContainsMemory.linkedListContains(7), ContainsMemory.arrayListContains(7), ContainsMemory.hashSetContains(7), ContainsMemory.treeSetContains(7)};
+        double[][][] removeTimes = {RemoveTime.arrayRemove(7), RemoveTime.linkedListRemove(7), RemoveTime.arrayListRemove(7), RemoveTime.hashSetRemove(7), RemoveTime.treeSetRemove(7)};
+        double[][][] removeMemories = {RemoveMemory.arrayRemove(7), RemoveMemory.linkedListRemove(7), RemoveMemory.arrayListRemove(7), RemoveMemory.hashSetRemove(7), RemoveMemory.treeSetRemove(7)};
 
-    public static double[][] arrayListGraph(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        double max = 0;
-        for (int i = 0; i < xValues.length; i++) {
-            ArrayList<Double> arrayList = new ArrayList <>();
-            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            //startTime = System.nanoTime();
-            for (int j = 0; j < xValues[i]; j++) {
-                arrayList.add(number);
-                number++;
-            }
-            //endTime = System.nanoTime();
-            //yValues[i] = (endTime - startTime) / 1000000d;
-            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            yValues[i] = ((total2-total) / 124) / 124;
-        }
-        for (int counter = 1; counter < yValues.length; counter++) {
-            if (yValues[counter] > max) {
-                max = yValues[counter];
-            }
-        }
-        System.out.println("Highest time value for Array List (case - num=7): " + max);
-        return new double[][]{xValues, yValues};
-    }
+        // Time diagrams:
+        drawDiagram(fillUpTimes, "Filling up times", "Time (milliseconds)");
+        drawDiagram(containsTimes, "Contains times", "Time (milliseconds)");
+        drawDiagram(removeTimes, "Remove times", "Time (milliseconds)");
 
-    public static double[][] arrayListContains(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            ArrayList<Double> arrayList = new ArrayList <> ();
-            for (int j = 0; j < xValues[i]; j++) {
-                arrayList.add(number);
-                number++;
-            }
-            int k = 100;
-            long elapsedTime = 0;
-            while (k >= 100) {
-                startTime = System.nanoTime();
-                arrayList.contains(i);
-                endTime = System.nanoTime();
-                elapsedTime += (endTime -startTime);
-                k--;
-            }
-           yValues[i] = (elapsedTime / 100d) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
+        // Memory diagram:
+        drawDiagram(fillUpMemories, "Filling up memories", "Memory usage (kilobytes)");
+        drawDiagram(containsMemories, "Contains memories", "Memory usage (kilobytes)");
+        drawDiagram(removeMemories, "Remove memories", "Memory usage (kilobytes)");
 
-    public static double[][] arrayListDelete(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            ArrayList<Double> arrayList = new ArrayList <> ();
-            for (int j = 0; j < xValues[i]; j++) {
-                arrayList.add(number);
-                number++;
-            }
-            startTime = System.nanoTime();
-            arrayList.remove((double) xValues[i] - 1);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] hashSetGraph(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double max = 0;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            HashSet<Double> hashSet = new HashSet <>();
-            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            //startTime = System.nanoTime();
-            for (int j = 0; j < xValues[i]; j++) {
-                hashSet.add(number);
-                number++;
-            }
-            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            yValues[i] = ((total2-total) / 124) / 124;
-            //endTime = System.nanoTime();
-            //yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        for (int counter = 1; counter < yValues.length; counter++) {
-            if (yValues[counter] > max) {
-                max = yValues[counter];
-            }
-        }
-        System.out.println("Highest time value for Hash Set (case - num=7): " + max);
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] hashSetContains(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            HashSet<Double> hashSet = new HashSet<> ();
-            for (int j = 0; j < xValues[i]; j++) {
-                hashSet.add(number);
-                number++;
-            }
-            int k = 100;
-            long elapsedTime = 0;
-            while (k >= 100) {
-                startTime = System.nanoTime();
-                hashSet.contains(i);
-                endTime = System.nanoTime();
-                elapsedTime += (endTime - startTime);
-                k--;
-            }
-            yValues[i] =  (elapsedTime / 100d) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] hashSetDelete(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            HashSet<Double> hashSet = new HashSet<> ();
-            for (int j = 0; j < xValues[i]; j++) {
-                hashSet.add(number);
-                number++;
-            }
-            startTime = System.nanoTime();
-            hashSet.remove(xValues[i] - 1);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] treeSetGraph(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double max = 0;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            TreeSet<Double> treeSet = new TreeSet <> ();
-            long total = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            //startTime = System.nanoTime();
-            for (int j = 0; j < xValues[i]; j++) {
-                treeSet.add(number);
-                number++;
-            }
-            long total2 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-            yValues[i] = ((total2-total) / 124) / 124;
-            //endTime = System.nanoTime();
-            //yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        for (int counter = 1; counter < yValues.length; counter++) {
-            if (yValues[counter] > max) {
-                max = yValues[counter];
-            }
-        }
-        System.out.println("Highest time value for Tree Set (case - num=7): " + max);
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] treeSetContains(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            TreeSet<Integer> treeSet = new TreeSet <>();
-            for (int j = 0; j < xValues[i]; j++) {
-                treeSet.add((int)number);
-                number++;
-            }
-            int k = 100;
-            long elapsedTime = 0;
-            while (k >= 100) {
-                startTime = System.nanoTime();
-                treeSet.contains(i);
-                endTime = System.nanoTime();
-                elapsedTime += (endTime - startTime);
-                k--;
-            }
-            yValues[i] =  (elapsedTime / 100d) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
-    }
-
-    public static double[][] treeSetDelete(int num) {
-        double[] xValues = new double[num];
-        double[] yValues = new double[num];
-        double x = 1;
-        for (int i = 0; i < num; i++) {
-            xValues[i] = x;
-            x = x * 10;
-        }
-        long startTime;
-        long endTime;
-        double number = 1;
-        for (int i = 0; i < xValues.length; i++) {
-            TreeSet<Double> treeSet = new TreeSet <>();
-            for (int j = 0; j < xValues[i]; j++) {
-                treeSet.add(number);
-                number++;
-            }
-            startTime = System.nanoTime();
-            treeSet.remove(xValues[i] - 1);
-            endTime = System.nanoTime();
-            yValues[i] = (endTime - startTime) / 1000000d;
-        }
-        return new double[][]{xValues, yValues};
+        //Bar chart with all maximum data:
+        final BarChartCreator barchart = new BarChartCreator("Bar chart");
+        barchart.pack();
+        RefineryUtilities.centerFrameOnScreen(barchart);
+        barchart.setVisible(true);
     }
 
     public static void showChart(JFreeChart chart) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame("Charts");
-
-                frame.setSize(600, 400);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setVisible(true);
-
-                ChartPanel cp = new ChartPanel(chart);
-
-                frame.getContentPane().add(cp);
-            }
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Charts");
+            frame.setSize(600, 400);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+            ChartPanel cp = new ChartPanel(chart);
+            frame.getContentPane().add(cp);
         });
     }
 
-    public static void drawDiagram(double[][] data, String title) {
+   public static void drawDiagram(double[][][] data, String name, String yLabel) {
         DefaultXYDataset ds = new DefaultXYDataset();
-        ds.addSeries("Collection", data);
-        JFreeChart chart = ChartFactory.createXYLineChart(title, "input size", "time", ds,
+        ds.addSeries("SimpleArray", data[0]);
+        ds.addSeries("LinkedList", data[1]);
+        ds.addSeries("ArrayList", data[2]);
+        ds.addSeries("HashSet", data[3]);
+        ds.addSeries("TreeSet", data[4]);
+        JFreeChart chart = ChartFactory.createXYLineChart(name, "Input size", yLabel, ds,
                 PlotOrientation.VERTICAL, true, true, false);
-
-        LogarithmicAxis xAxis = new LogarithmicAxis("input size");
-
+        LogarithmicAxis xAxis = new LogarithmicAxis("Input size");
         XYPlot plot = chart.getXYPlot();
         plot.setDomainAxis(xAxis);
-
         XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer)plot.getRenderer();
         renderer.setSeriesShapesVisible(0, true);
-
-        // Show diagram:
         showChart(chart);
     }
 }
