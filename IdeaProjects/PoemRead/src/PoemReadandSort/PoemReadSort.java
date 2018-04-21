@@ -91,6 +91,15 @@ public class PoemReadSort {
         String[] wordsArray;
         List <String> list = new ArrayList <>();
         Map<String, Integer> wordCount = new HashMap <>();
+
+        List once = new ArrayList();
+        List twice = new ArrayList();
+        List three = new ArrayList();
+        List four = new ArrayList();
+        List five = new ArrayList();
+        List six = new ArrayList();
+        Map<Integer, List> listMap = new TreeMap <>();
+
         try {
             reader = new BufferedReader(new FileReader(fileName));
             String line = null;
@@ -138,8 +147,35 @@ public class PoemReadSort {
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry)it.next();
             System.out.println(pair.getKey() + "=" + pair.getValue());
+
+            // Order in a TreeMap where key is going to be the number, value is a list with words!
+            if (pair.getValue().equals(1)) {
+                once.add(pair.getKey());
+            }
+            if (pair.getValue().equals(2)) {
+                twice.add(pair.getKey());
+            }
+            if (pair.getValue().equals(3)) {
+                three.add(pair.getKey());
+            }
+            if (pair.getValue().equals(4)) {
+                four.add(pair.getKey());
+            }
+            if (pair.getValue().equals(5)) {
+                five.add(pair.getKey());
+            }
+            if (pair.getValue().equals(6)) {
+                six.add(pair.getKey());
+            }
             it.remove();
         }
+        listMap.put(1, once);
+        listMap.put(2, twice);
+        listMap.put(3, three);
+        listMap.put(4, four);
+        listMap.put(5, five);
+        listMap.put(6, six);
+        System.out.println(listMap);
         return wordCount;
     }
 
