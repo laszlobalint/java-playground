@@ -77,7 +77,7 @@ public class JavaMail {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             InternetAddress to_address = new InternetAddress(to.get(i).toString());
-            System.out.println("Message was sent to " + to.get(i));
+            System.out.println("\nMessage was sent to " + to.get(i));
             message.addRecipient(Message.RecipientType.TO, to_address);
             message.setSubject(subject.get(i).toString());
             message.setText(body.get(i).toString());
