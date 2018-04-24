@@ -1,6 +1,5 @@
 package origo.parser;
 
-import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,8 +23,7 @@ public class HTMLparser {
         for (Object link : relevantUrls) {
             URL url = new URL((String) link);
             String text = ArticleExtractor.INSTANCE.getText(url);
-            //System.out.println(text);
-            //writeToFile(text);
+            writeToFile(text);
             try {
                 db.connect();
                 db.insertArticle("Microsoft", text);
@@ -49,7 +47,7 @@ public class HTMLparser {
         db.closeConnection();
     }
 
-        public static List getURLs () throws IOException {
+        public static ArrayList getURLs () throws IOException {
             Document doc;
             doc = Jsoup.connect("http://cimkezes.origo.hu/cimkek/microsoft/index.html?tag=Microsoft&offset=0&hits=3000").get();
             String title = doc.title();
@@ -71,7 +69,7 @@ public class HTMLparser {
             for (String url : relevantUrls) {
                 System.out.println(url);
             }
-            return relevantUrls;
+            return (ArrayList) relevantUrls;
         }
 
         public static void writeToFile (String content) throws IOException {

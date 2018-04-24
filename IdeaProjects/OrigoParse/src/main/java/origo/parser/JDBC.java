@@ -16,19 +16,19 @@ class DBConnect {
         password = pass;
     }
 
-    public void connect() throws SQLException, Exception {
+    public void connect() throws Exception {
         Class.forName(DRIVER);
         System.out.println("Connecting...");
         conn = DriverManager.getConnection(DB_PATH, username, password);
         stat = conn.createStatement();
     }
 
-    public void closeConnection() throws SQLException, Exception {
+    public void closeConnection() throws Exception {
         stat.close();
         conn.close();
     }
 
-    public void insertArticle(String keyword, String content) throws SQLException, Exception {
+    public void insertArticle(String keyword, String content) throws Exception {
         System.out.println("Adding...");
         String query = "INSERT INTO origo (keyword, content) VALUES (?, ?)";
         prepStmnt = conn.prepareStatement(query);
