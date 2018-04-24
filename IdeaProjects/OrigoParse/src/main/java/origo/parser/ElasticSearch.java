@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ElasticSearch {
@@ -22,7 +23,7 @@ public class ElasticSearch {
     // ElasticSearch: http://localhost:9200/
     // Kibana: http://localhost:5601/
 
-    public static void main(ArrayList relevantUrls, String tag) throws IOException, BoilerpipeProcessingException, SAXException {
+    public static void main(List relevantUrls, String tag) throws IOException, BoilerpipeProcessingException, SAXException {
 
         ElasticSearch parser = new ElasticSearch();
 

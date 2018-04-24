@@ -47,9 +47,9 @@ public class HTMLparser {
         db.closeConnection();
     }
 
-        public static ArrayList getURLs () throws IOException {
+        public static List<String> getURLs (String origoUrl) throws IOException {
             Document doc;
-            doc = Jsoup.connect("http://cimkezes.origo.hu/cimkek/microsoft/index.html?tag=Microsoft&offset=0&hits=3000").get();
+            doc = Jsoup.connect(origoUrl).get();
             String title = doc.title();
             String body = String.valueOf(doc.body());
             List <String> containedUrls = new ArrayList <>();
@@ -62,14 +62,15 @@ public class HTMLparser {
                         urlMatcher.end(0)));
             }
             for (String url : containedUrls) {
-                if (url.contains("microsoft") || url.contains("techbazis") && !url.contains("index.html") && !url.contains("facebook.com")) {
+                //if (url.contains("microsoft") || url.contains("techbazis") && !url.contains("index.html") && !url.contains("facebook.com")) {
+                if (!url.contains("index.html") && !url.contains("facebook.com") && !url.contains("origo.hu//")) {
                     relevantUrls.add(url);
                 }
             }
             for (String url : relevantUrls) {
                 System.out.println(url);
             }
-            return (ArrayList) relevantUrls;
+            return relevantUrls;
         }
 
         public static void writeToFile (String content) throws IOException {
