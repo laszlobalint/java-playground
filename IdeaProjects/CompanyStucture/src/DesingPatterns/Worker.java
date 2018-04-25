@@ -22,13 +22,10 @@ public class Worker implements Subordinated {
     }
 
     @Override
-    public void work() {
-    }
+    public void work() {}
 
     @Override
-    public void goHoliday() {
-
-    }
+    public void goHoliday() {}
 
     @Override
     public double getSalary() {

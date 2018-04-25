@@ -82,7 +82,7 @@ public class JavaMail {
             message.setSubject(subject.get(i).toString());
             message.setText(body.get(i).toString());
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", "javapracticeflow", "javapracticeflow001");
+            transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }

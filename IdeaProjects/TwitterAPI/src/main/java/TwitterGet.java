@@ -7,10 +7,10 @@ import java.util.List;
 public class TwitterGet {
 
     public static void main(String[] args) {
-        TwitterGet feedGetterAll = new TwitterGet("ChiliPeppers", true);
-        TwitterGet feedGetter = new TwitterGet("ChiliPeppers", 200, false);
+        TwitterGet feedGetterAll = new TwitterGet("MLSZhivatalos", true);
+        //TwitterGet feedGetter = new TwitterGet("ChiliPeppers", 200, false);
         feedGetterAll.gettingFeed();
-        feedGetter.gettingFeed();
+        //feedGetter.gettingFeed();
     }
 
     private String username;
@@ -67,8 +67,10 @@ public class TwitterGet {
             int counter = 0;
             for (Status status : statuses) {
                 counter++;
-                System.out.println(counter + ".: @" + status.getUser().getScreenName() + " - " + status.getText());
-            }
+                if (status.getText().contains("Szalai")) {
+                    System.out.println(counter + ".: @" + status.getUser().getScreenName() + " - " + status.getText());
+                }
+                }
         } catch (TwitterException te) {
             te.printStackTrace();
             System.out.println("Failed to get timeline: " + te.getMessage());

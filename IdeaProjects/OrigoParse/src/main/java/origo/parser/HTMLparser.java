@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +26,7 @@ public class HTMLparser {
         for (Object link : relevantUrls) {
             URL url = new URL((String) link);
             String text = ArticleExtractor.INSTANCE.getText(url);
-            writeToFile(text);
+            //writeToFile(text);
             try {
                 db.connect();
                 db.insertArticle("Microsoft", text);
@@ -47,37 +50,42 @@ public class HTMLparser {
         db.closeConnection();
     }
 
-        public static List<String> getURLs (String origoUrl) throws IOException {
-            Document doc;
-            doc = Jsoup.connect(origoUrl).get();
+    public static List <String> getURLs(String[] urls) throws IOException {
+        List <String> containedUrls = new ArrayList <>();
+        List <String> relevantUrls = new ArrayList <>();
+        for (int i = 0; i < urls.length; i++) {
+            Document doc = Jsoup.connect(urls[i]).get();
             String title = doc.title();
             String body = String.valueOf(doc.body());
-            List <String> containedUrls = new ArrayList <>();
-            List <String> relevantUrls = new ArrayList <>();
             String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
             Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
             Matcher urlMatcher = pattern.matcher(body);
             while (urlMatcher.find()) {
-                containedUrls.add(body.substring(urlMatcher.start(0),
-                        urlMatcher.end(0)));
+                containedUrls.add(body.substring(urlMatcher.start(), urlMatcher.end()));
             }
             for (String url : containedUrls) {
-                //if (url.contains("microsoft") || url.contains("techbazis") && !url.contains("index.html") && !url.contains("facebook.com")) {
-                if (!url.contains("index.html") && !url.contains("facebook.com") && !url.contains("origo.hu//")) {
+                if (!url.contains("index.html") && url.contains("www.origo.hu") && (url.length() > 35) && !url.contains("(2)") && !url.contains("www.origo.hu//")) {
                     relevantUrls.add(url);
                 }
             }
-            for (String url : relevantUrls) {
-                System.out.println(url);
-            }
-            return relevantUrls;
         }
-
-        public static void writeToFile (String content) throws IOException {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("./origo_microsoft.txt", true));
-            bw.append("\n" + content + "\n");
-            bw.flush();
-            bw.close();
-            System.out.println("Origo articles for tag/keyword 'Microsoft' were saved to file!");
+        for (String url : relevantUrls) {
+            System.out.println(url);
         }
+        return relevantUrls;
     }
+
+    public static void writeToFile(List <String> relevantUrls, String fileName) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true));
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        bw.append("Search was completed on: " + dateFormat.format(date) + '\n');
+        for (String url : relevantUrls) {
+            bw.append(url + "\n");
+
+        }
+        bw.flush();
+        bw.close();
+        System.out.println("Origo articles for tag/keyword 'Korrupció' were saved to file!");
+    }
+}

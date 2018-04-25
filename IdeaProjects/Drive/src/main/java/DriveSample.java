@@ -46,7 +46,7 @@ public class DriveSample {
     private static Credential authorize() throws Exception {
 
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-                new InputStreamReader(DriveSample.class.getResourceAsStream("/client_secrets.json")));
+                    new InputStreamReader(DriveSample.class.getResourceAsStream("/client_secrets.json")));
         if (clientSecrets.getDetails().getClientId().startsWith("Enter")
                 || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
             System.out.println(
@@ -125,7 +125,6 @@ public class DriveSample {
 
     private static void downloadFile(boolean useDirectDownload, File uploadedFile)
             throws IOException {
-
         java.io.File parentDir = new java.io.File(DIR_FOR_DOWNLOADS);
         if (!parentDir.exists() && !parentDir.mkdirs()) {
             throw new IOException("Unable to create parent directory");
