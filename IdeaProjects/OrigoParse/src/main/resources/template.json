@@ -1,0 +1,21 @@
+{
+  "doc": {
+    "properties": {
+      "additionalTags": {
+        "type": "keyword"
+      },
+      "author": {
+        "type": "keyword"
+      },
+      "content": {
+        "type": "text"
+      },
+      "date": {
+        "type": "date"
+      },
+      "title": {
+        "type": "keyword"
+      }
+    }
+  }
+}
