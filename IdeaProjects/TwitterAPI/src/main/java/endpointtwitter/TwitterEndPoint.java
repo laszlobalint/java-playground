@@ -29,7 +29,7 @@ public final class TwitterEndPoint {
             "thirsty ass", "sexy ass", "be thirsty", "soo thirsty", "too thirsty", "fucking bitch", "fucking bitches", "sext", "get fucked",
             "getting fucked", "gettin fucked", "make love", "making love", "makin love", "hot movie", "hot short movie", "sexy",
             "contraception", "contraceptive", "first night", "strip club", "erotic", "cakeboy", "cake guy", "your nuts", "dhick",
-            "lick my nuts", "fuck", "fucking", "fuckin", "fucks", "fucked", "bitch", "hoe", "bitches", "hoes", "shit", "dick", "cunt",
+            "lick my nuts", "fuck", "fucking", "fuckin", "fucks", "fucked", "fuckboi", "bitch", "hoe", "bitches", "hoes", "shit", "dick", "cunt",
             "cunts", "ass", "asshole", "wtf"};
     public static final Set<String> MY_SET = new TreeSet <>(Arrays.asList(SET_VALUES));
 
@@ -45,63 +45,71 @@ public final class TwitterEndPoint {
                 .getInstance();
 
         StatusListener listener = new StatusListener() {
+
             @Override
             public void onStatus(Status status) {
-               if (status.getLang().equals("en") && !status.getText().contains("sex")) {
-                   System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-                   JSONObject datas = new JSONObject();
-                   JSONObject users = new JSONObject();
-                   JSONObject tweets = new JSONObject();
+                boolean loop = false;
+                int i = 0;
+                while (!loop && i < SET_VALUES.length) {
+                    loop = status.getText().contains(SET_VALUES[i]);
+                    i++;
+                }
+                if (!loop && status.getLang().equals("en")) {
+                    System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+                    JSONObject datas = new JSONObject();
+                    JSONObject users = new JSONObject();
+                    JSONObject tweets = new JSONObject();
 
-                   JSONArray text = new JSONArray();
-                   JSONArray id_str = new JSONArray();
-                   JSONArray created_at = new JSONArray();
-                   JSONArray screen_name = new JSONArray();
-                   JSONArray geolocation = new JSONArray();
-                   JSONArray language = new JSONArray();
+                    JSONArray text = new JSONArray();
+                    JSONArray id_str = new JSONArray();
+                    JSONArray created_at = new JSONArray();
+                    JSONArray screen_name = new JSONArray();
+                    JSONArray geolocation = new JSONArray();
+                    JSONArray language = new JSONArray();
 
-                   text.put(status.getText());
-                   id_str.put(status.getId());
-                   created_at.put(status.getCreatedAt());
-                   screen_name.put(status.getUser().getScreenName());
-                   geolocation.put(status.getGeoLocation());
-                   language.put(status.getLang());
+                    text.put(status.getText());
+                    id_str.put(status.getId());
+                    created_at.put(status.getCreatedAt());
+                    screen_name.put(status.getUser().getScreenName());
+                    geolocation.put(status.getGeoLocation());
+                    language.put(status.getLang());
 
-                   try {
-                   tweets.put("text", text);
-                   tweets.put("id_str", id_str);
-                   tweets.put("created_at", created_at);
+                    try {
+                    try {
+                        tweets.put("text", text);
+                        tweets.put("id_str", id_str);
+                        tweets.put("created_at", created_at);
 
-                   users.put("screen_name", screen_name);
-                   users.put("geolocation", geolocation);
-                   users.put("language", language);
-                   datas.put("users", users);
-                   datas.put("tweets", tweets);
-                   } catch (JSONException e) {
-                       e.printStackTrace();
-                   }
-                   System.out.println(status.getText());
-
-                            RestHighLevelClient client = new RestHighLevelClient(
-                                    RestClient.builder(
-                                            new HttpHost("localhost", 9200, "http")
-                                    ));
-                            IndexRequest indexRequest = new IndexRequest("twitter_posts", "doc");
-                            Map <String, Object> jsonMap = new HashMap <>();
-                            jsonMap.put("text", text);
-                            jsonMap.put("id_str", id_str);
-                            jsonMap.put("created_at", created_at);
-                            jsonMap.put("geolocation", geolocation);
-                            jsonMap.put("screen_name", screen_name);
-                            jsonMap.put("language", language);
-                            try {
-                                client.index(indexRequest.source(jsonMap));
-                                client.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                        users.put("screen_name", screen_name);
+                        users.put("geolocation", geolocation);
+                        users.put("language", language);
+                        datas.put("users", users);
+                        datas.put("tweets", tweets);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+
+                    RestHighLevelClient client = new RestHighLevelClient(
+                            RestClient.builder(
+                                    new HttpHost("localhost", 9200, "http")
+                            ));
+                    IndexRequest indexRequest = new IndexRequest("twitter_posts", "doc");
+                    Map <String, Object> jsonMap = new HashMap <>();
+                    jsonMap.put("text", text);
+                    jsonMap.put("id_str", id_str);
+                    jsonMap.put("created_at", created_at);
+                    jsonMap.put("geolocation", geolocation);
+                    jsonMap.put("screen_name", screen_name);
+                    jsonMap.put("language", language);
+                    try {
+                        client.index(indexRequest.source(jsonMap));
+                        client.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
 
             @Override
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
