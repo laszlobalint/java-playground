@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,9 +48,9 @@ public class HTMLparser {
         db.closeConnection();
     }
 
-    public static List <String> getURLs(String[] urls) throws IOException {
-        List <String> containedUrls = new ArrayList <>();
-        List <String> relevantUrls = new ArrayList <>();
+    public static Set<String> getURLs(String[] urls) throws IOException {
+        Set<String> containedUrls = new HashSet <>();
+        Set<String> relevantUrls = new HashSet <>();
         for (int i = 0; i < urls.length; i++) {
             Document doc = Jsoup.connect(urls[i]).get();
             String title = doc.title();

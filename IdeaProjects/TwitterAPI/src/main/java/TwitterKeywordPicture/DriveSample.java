@@ -24,9 +24,9 @@ import java.util.Collections;
 
 public class DriveSample {
     private static final String APPLICATION_NAME = "Application";
-    private static final String UPLOAD_FILE_PATH = "./src/resources";
-    private static final String DIR_FOR_DOWNLOADS = "./src/resources";
-    private static final java.io.File UPLOAD_FILE = new java.io.File(UPLOAD_FILE_PATH);
+    private static final String UPLOAD_FILE_PATH = "./";
+    private static final String DIR_FOR_DOWNLOADS = "./";
+    private static final java.io.File UPLOAD_FILE = new java.io.File("image.jpeg");
     private static final java.io.File DATA_STORE_DIR =
             new java.io.File(System.getProperty("user.home"), ".store/drive_sample");
     private static FileDataStoreFactory dataStoreFactory;
@@ -53,7 +53,7 @@ public class DriveSample {
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         Preconditions.checkArgument(
                 !UPLOAD_FILE_PATH.startsWith("Enter ") && !DIR_FOR_DOWNLOADS.startsWith("Enter "),
                 "Please enter the upload file path and download directory in %s", DriveSample.class);

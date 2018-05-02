@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +25,7 @@ public class ElasticSearch {
     // ElasticSearch: http://localhost:9200/
     // Kibana: http://localhost:5601/
 
-    public static void main(List relevantUrls, String tag) throws IOException, BoilerpipeProcessingException, SAXException {
+    public static void main(Set <String> relevantUrls, String tag) throws IOException, BoilerpipeProcessingException, SAXException {
 
         ElasticSearch parser = new ElasticSearch();
         RestHighLevelClient client = new RestHighLevelClient(
@@ -33,10 +34,10 @@ public class ElasticSearch {
                 ));
         IndexRequest indexRequest = new IndexRequest(tag, "doc");
         final String regex = "\\d{4}\\.(0?[1-9]|1[012])\\.(..)";
-        for (int k = 0; k < relevantUrls.size(); k++) {
-            final HTMLDocument htmlDoc = HTMLFetcher.fetch(new URL((String) relevantUrls.get(k)));
+        for (String temp : relevantUrls) {
+            final HTMLDocument htmlDoc = HTMLFetcher.fetch(new URL(temp));
             final TextDocument doc = new BoilerpipeSAXInput(htmlDoc.toInputSource()).getTextDocument();
-            URL url = new URL((String) relevantUrls.get(k));
+            URL url = new URL(temp);
             String text = ArticleExtractor.INSTANCE.getText(url);
             Map<String, Object> jsonMap = new HashMap<>();
             final Pattern pattern = Pattern.compile(regex);
@@ -45,7 +46,7 @@ public class ElasticSearch {
             jsonMap.put("date", matcher.group(0));
                 System.out.println(matcher.group(0));
             }
-            jsonMap.put("url", relevantUrls.get(k));
+            jsonMap.put("url", temp);
             jsonMap.put("title", doc.getTitle());
             jsonMap.put("content", text);
             client.index(indexRequest.source(jsonMap));

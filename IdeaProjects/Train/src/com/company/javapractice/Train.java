@@ -37,7 +37,7 @@ public class Train {
                 j++;
 
             } else if (args[i].equals("goods")) {
-                trains[j] = new GoodsTrain(args[i + 1], args[i + 2], Integer.parseInt(args[i + 3]), Integer.parseInt(args[i + 4]), args[i + 5], Integer.parseInt(args[i + 6]));
+                trains[j] = new GoodsTrain( args[i + 1], args[i + 2], Integer.parseInt(args[i + 3]), Integer.parseInt(args[i + 4]), args[i + 5], Integer.parseInt(args[i + 6]));
                 step = 7;
                 System.out.println(trains[j].toString());
                 j++;

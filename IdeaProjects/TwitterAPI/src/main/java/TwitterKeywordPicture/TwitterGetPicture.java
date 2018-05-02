@@ -22,19 +22,17 @@ public final class TwitterGetPicture {
 
             @Override
             public void onStatus(Status status) {
-                if (status.getLang().equals("en") && status.getText().contains("game")) {
+                if (status.getLang().equals("en") && status.getText().contains("terrorist")) {
                     System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
                     MediaEntity[] media = status.getMediaEntities();
-                    int counter = 0;
                     for (MediaEntity m : media) {
                         System.out.println(m.getMediaURL());
-                        counter++;
                         InputStream inputStream = null;
                         OutputStream outputStream = null;
                         try {
                             URL url = new URL(m.getMediaURL());
                             inputStream = url.openStream();
-                            outputStream = new FileOutputStream(counter + "image.jpg");
+                            outputStream = new FileOutputStream("image.jpeg");
 
                             byte[] buffer = new byte[2048];
                             int length;
@@ -59,6 +57,7 @@ public final class TwitterGetPicture {
                                 System.out.println("Finally IOException :- " + e.getMessage());
                             }
                         }
+                        DriveSample.main();
                     }
                 }
             }

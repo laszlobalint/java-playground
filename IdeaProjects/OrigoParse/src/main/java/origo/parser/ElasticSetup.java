@@ -19,10 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -67,7 +64,7 @@ public class ElasticSetup {
         }
     }
 
-    public static void elasticConnector(List relevantUrls, String tag) throws IOException {
+    public static void elasticConnector(Set <String> relevantUrls, String tag) throws IOException {
         SimpleDateFormat parser = new SimpleDateFormat("yyyy.MM.dd");
         Date date = null;
         RestHighLevelClient client = new RestHighLevelClient(
@@ -75,9 +72,9 @@ public class ElasticSetup {
                         new HttpHost("localhost", 9200, "http")
                 ));
         IndexRequest indexRequest = new IndexRequest(tag, "doc");
-        for (int i = 0; i < relevantUrls.size(); i++) {
+        for (String temp : relevantUrls) {
             final String regex = "\\d{4}\\.(0?[1-9]|1[012])\\.(..)";
-            final HTMLDocument htmlDoc = HTMLFetcher.fetch(new URL((String) relevantUrls.get(i)));
+            final HTMLDocument htmlDoc = HTMLFetcher.fetch(new URL(temp));
             TextDocument doc = null;
             try {
                 doc = new BoilerpipeSAXInput(htmlDoc.toInputSource()).getTextDocument();
@@ -86,7 +83,7 @@ public class ElasticSetup {
             } catch (SAXException e) {
                 e.printStackTrace();
             }
-            URL url = new URL((String) relevantUrls.get(i));
+            URL url = new URL(temp);
             String text = null;
             try {
                 text = ArticleExtractor.INSTANCE.getText(url);

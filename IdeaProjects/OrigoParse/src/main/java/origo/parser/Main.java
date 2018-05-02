@@ -18,9 +18,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         //boilerPipe(getURLs("http://cimkezes.origo.hu/cimkek/microsoft/index.html?tag=Microsoft&offset=0&hits=3000"));
-        ElasticSearch.main(HTMLparser.getURLs(links), "korrupció");
-        writeToFile(HTMLparser.getURLs(links), "./korrupcio.txt");
+        //ElasticSearch.main(HTMLparser.getURLs(links), "korrupció");
+        //writeToFile(HTMLparser.getURLs(links), "./korrupcio.txt");
+        //ElasticSearch.main(HTMLparser.getURLs(links2), "microsoft");
+        //writeToFile(HTMLparser.getURLs(links2), "./microsoft.txt");
         ElasticSearch.main(HTMLparser.getURLs(links2), "microsoft");
-        writeToFile(HTMLparser.getURLs(links2), "./microsoft.txt");
     }
 }
