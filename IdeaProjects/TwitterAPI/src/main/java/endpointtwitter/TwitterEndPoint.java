@@ -73,8 +73,6 @@ public final class TwitterEndPoint {
                     screen_name.put(status.getUser().getScreenName());
                     geolocation.put(status.getGeoLocation());
                     language.put(status.getLang());
-
-                    try {
                     try {
                         tweets.put("text", text);
                         tweets.put("id_str", id_str);

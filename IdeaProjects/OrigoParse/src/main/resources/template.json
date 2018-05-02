@@ -1,12 +1,6 @@
 {
   "doc": {
     "properties": {
-      "additionalTags": {
-        "type": "keyword"
-      },
-      "author": {
-        "type": "keyword"
-      },
       "content": {
         "type": "text"
       },

@@ -25,4 +25,7 @@ dependencies {
     compile group: 'org.elasticsearch.client', name: 'transport', version: '6.2.3'
     compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.2.3'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+
+    compile 'com.google.apis:google-api-services-drive:v2-rev306-1.23.0'
+    compile group: 'com.google.oauth-client', name: 'google-oauth-client-jetty', version: '1.23.0'
 }

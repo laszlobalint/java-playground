@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,13 +27,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static origo.parser.Main.links;
+import static origo.parser.Main.links2;
 
 public class ElasticSetup {
     private static final String PATH = "./src/main/resources/";
 
     public static void main(String[] args) throws IOException {
-        indexMapper("korrupcio");
-        elasticConnector(HTMLparser.getURLs(links), "korrupció");
+        indexMapper("microsoft");
+        elasticConnector(HTMLparser.getURLs(links2), "microsoft");
     }
 
     public static void indexMapper(String tag) {
@@ -66,7 +68,7 @@ public class ElasticSetup {
     }
 
     public static void elasticConnector(List relevantUrls, String tag) throws IOException {
-        SimpleDateFormat parser=new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy.MM.dd");
         Date date = null;
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
@@ -95,7 +97,12 @@ public class ElasticSetup {
             final Pattern pattern = Pattern.compile(regex);
             final Matcher matcher = pattern.matcher(text);
             if (matcher.find()) {
-                jsonMap.put("date", matcher.group(0));
+                try {
+                    date = parser.parse(matcher.group(0));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                jsonMap.put("date", date);
                 System.out.println(matcher.group(0));
             }
             jsonMap.put("title", doc.getTitle());
