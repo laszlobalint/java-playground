@@ -1,11 +1,10 @@
-package TwitterKeywordPicture;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public final class TwitterGetPicture {
+public final class FilterTweetPictureUpload {
 
     public static void main(String[] args) {
 
@@ -57,7 +56,7 @@ public final class TwitterGetPicture {
                                 System.out.println("Finally IOException :- " + e.getMessage());
                             }
                         }
-                        DriveSample.main();
+                        GoogleDriveConnector.main();
                     }
                 }
             }

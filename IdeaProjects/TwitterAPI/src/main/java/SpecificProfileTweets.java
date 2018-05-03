@@ -4,11 +4,11 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TwitterGet {
+public class SpecificProfileTweets {
 
     public static void main(String[] args) {
-        TwitterGet feedGetterAll = new TwitterGet("MLSZhivatalos", true);
-        //TwitterGet feedGetter = new TwitterGet("ChiliPeppers", 200, false);
+        SpecificProfileTweets feedGetterAll = new SpecificProfileTweets("MLSZhivatalos", true);
+        //SpecificProfileTweets feedGetter = new SpecificProfileTweets("ChiliPeppers", 200, false);
         feedGetterAll.gettingFeed();
         //feedGetter.gettingFeed();
     }
@@ -17,12 +17,12 @@ public class TwitterGet {
     private int numberOfTweets;
     private boolean isAll;
 
-    public TwitterGet(String username, boolean isAll) {
+    public SpecificProfileTweets(String username, boolean isAll) {
         this.username = username;
         this.isAll = isAll;
     }
 
-    public TwitterGet(String username, int numberOfTweets, boolean isAll) {
+    public SpecificProfileTweets(String username, int numberOfTweets, boolean isAll) {
         this.username = username;
         this.numberOfTweets = numberOfTweets;
         this.isAll = isAll;

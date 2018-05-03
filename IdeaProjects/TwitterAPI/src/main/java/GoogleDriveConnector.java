@@ -1,5 +1,3 @@
-package TwitterKeywordPicture;
-
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -22,7 +20,7 @@ import java.util.Collections;
 
 // https://console.developers.google.com/apis/
 
-public class DriveSample {
+public class GoogleDriveConnector {
     private static final String APPLICATION_NAME = "Application";
     private static final String UPLOAD_FILE_PATH = "./";
     private static final String DIR_FOR_DOWNLOADS = "./";
@@ -36,7 +34,7 @@ public class DriveSample {
     private static Credential authorize() throws Exception {
 
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-                    new InputStreamReader(DriveSample.class.getResourceAsStream("/client_secrets.json")));
+                    new InputStreamReader(GoogleDriveConnector.class.getResourceAsStream("/client_secrets.json")));
         if (clientSecrets.getDetails().getClientId().startsWith("Enter")
                 || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
             System.out.println(
@@ -56,7 +54,7 @@ public class DriveSample {
     public static void main() {
         Preconditions.checkArgument(
                 !UPLOAD_FILE_PATH.startsWith("Enter ") && !DIR_FOR_DOWNLOADS.startsWith("Enter "),
-                "Please enter the upload file path and download directory in %s", DriveSample.class);
+                "Please enter the upload file path and download directory in %s", GoogleDriveConnector.class);
 
         try {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();

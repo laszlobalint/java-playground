@@ -1,11 +1,9 @@
-package endpointtwitter;
-
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
-public final class TwitterRealTimeFilter {
+public final class RealTimeTweetFilter {
 
-    public static void main(String[] args) throws TwitterException {
+    public static void main(String[] args) {
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey("uRW6AJbfloNkLd4TuUtQtQBNh")

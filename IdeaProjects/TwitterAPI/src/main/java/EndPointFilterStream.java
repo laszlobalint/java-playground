@@ -1,5 +1,3 @@
-package endpointtwitter;
-
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.RestClient;
@@ -9,7 +7,7 @@ import twitter4j.conf.ConfigurationBuilder;
 import java.io.IOException;
 import java.util.*;
 
-public final class TwitterEndPoint {
+public final class EndPointFilterStream {
 
     public static final String[] SET_VALUES = new String[] {"18+", "boner" , "PMT", "porn", "porno", "pornography,", "anal", "anilingus", "arse",
             "arsehole", "aussie kiss", "axe wound", "baby batter", "back passage", "bad bitch", "bad bitches", "balloon knot",
