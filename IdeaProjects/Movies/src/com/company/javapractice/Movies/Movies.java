@@ -3,13 +3,9 @@ package com.company.javapractice.Movies;
 import java.util.Random;
 
 public class Movies {
-    protected String title;
-    protected String producerName;
-    protected int releaseYear;
-    private Random random;
-
-    public Movies() {
-    }
+    private String title;
+    private String producerName;
+    private int releaseYear;
 
     public Movies(String title, String producerName, int releaseYear) {
         this.title = title;
@@ -26,36 +22,8 @@ public class Movies {
         }
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getProducerName() {
-        return producerName;
-    }
-
-    public void setProducerName(String producerName) {
-        this.producerName = producerName;
-    }
-
-    public int getReleaseYear() {
-        return releaseYear;
-    }
-
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
-    }
+    public String getTitle() { return title; }
 
     @Override
-    public String toString() {
-        return "Movie - " +
-                "Title: " + title + '\'' +
-                ", Producer: " + producerName + '\'' +
-                ", Released: " + releaseYear +
-                ". ";
-    }
+    public String toString() { return "Movie - " + "Title: " + title + '\'' + ", Producer: " + producerName + '\'' + ", Released: " + releaseYear + ". "; }
 }
