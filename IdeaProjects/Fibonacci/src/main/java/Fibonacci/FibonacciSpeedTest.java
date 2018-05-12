@@ -44,13 +44,6 @@ final class FastFibonacci {
             System.out.printf("Answer: (%d bits long)%n", z.bitLength());
     }
 
-    /*
-     * Fast doubling method. Faster than the matrix method.
-     * F(2n) = F(n) * (2*F(n+1) - F(n)).
-     * F(2n+1) = F(n+1)^2 + F(n)^2.
-     * This implementation is the non-recursive version.
-     */
-
     private static BigInteger fastFibonacciDoubling(int n) {
         BigInteger a = BigInteger.ZERO;
         BigInteger b = BigInteger.ONE;
@@ -135,4 +128,6 @@ final class FastFibonacci {
     private static BigInteger multiply(BigInteger x, BigInteger y) {
         return x.multiply(y);
     }
+
+
 }

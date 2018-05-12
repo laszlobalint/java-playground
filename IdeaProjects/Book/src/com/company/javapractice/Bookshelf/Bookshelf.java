@@ -6,20 +6,19 @@ import com.company.javapractice.Book.Novel;
 import com.company.javapractice.Book.SchoolBook;
 
 public class Bookshelf {
-
-    static ArrayList<Book> books = new ArrayList <Book>();
+    private static ArrayList<Book> books = new ArrayList <>();
 
     public static void main(String[] args) {
-        putOnShelf(args, books);
+        Bookshelf bookshelf = new Bookshelf();
+        bookshelf.putOnShelf(args, books);
 
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i));
+        for (Book book : books) {
+            System.out.println(book);
         }
         System.out.println("The number of novels on the shelf: " + Novel.counterNovel);
     }
 
-    public static void putOnShelf (String[] args, ArrayList<Book> books) {
-
+    private void putOnShelf (String[] args, ArrayList<Book> books) {
         String[] parameters;
 
         for(int i = 0; i < args.length; i++) {

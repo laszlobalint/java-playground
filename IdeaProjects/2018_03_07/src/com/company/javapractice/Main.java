@@ -35,7 +35,7 @@ public class Main {
         hundredRandMaxMin();
     }
 
-    public static void projectileMotion(int degree, double speed, double time) {
+    private static void projectileMotion(int degree, double speed, double time) {
         double angleInDegree = degree;
         double angleInRadian = Math.toRadians(angleInDegree);
         double g = 9.81;
@@ -49,7 +49,7 @@ public class Main {
         System.out.println("Traveled distance at a given time: " + d + " meters");
     }
 
-    public static void smallerSquareRoot(String[] args) {
+    private static void smallerSquareRoot(String[] args) {
         double arg1 = Double.parseDouble(args[0]);
         double arg2 = Double.parseDouble(args[1]);
         if (arg1 > arg2) {
@@ -59,7 +59,7 @@ public class Main {
         }
     }
 
-    public static void compareNums() {
+    private static void compareNums() {
         Scanner sc1 = new Scanner(System.in);
         System.out.println("Enter the first number: ");
         int num1 = sc1.nextInt();
@@ -75,7 +75,7 @@ public class Main {
         }
     }
 
-    public static void squareTen() {
+    private static void squareTen() {
         double[] oneToTen = new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         double[] oneToTenSquare = new double[10];
         for (int i = 0; i < oneToTen.length; i++) {
@@ -88,7 +88,7 @@ public class Main {
 
 
     // String - Java String:
-    public static void stringPract() {
+    private static void stringPract() {
         String s1 = "Welcome";
         String s2 = "Welcome";
         String s3 = new String("Welcome");
@@ -142,7 +142,7 @@ public class Main {
         }
     }
 
-    public static Integer search(String string, Character character) {
+    private static Integer search(String string, Character character) {
         int index = 0;
         int counter = 0;
         while (string.indexOf(character, index) != -1) {
@@ -152,7 +152,7 @@ public class Main {
         return counter;
     }
 
-    public static void secondDegreeEquation () {
+    private static void secondDegreeEquation() {
         Scanner a = new Scanner(System.in);
         System.out.println("Enter the number 'a': ");
         double num1 = a.nextDouble();
@@ -170,7 +170,7 @@ public class Main {
         System.out.println("Y: " + y);
     }
 
-    public static void dividableByTwoOrThree(int a) {
+    private static void dividableByTwoOrThree(int a) {
         if (a % 2 == 0) {
             System.out.println(a + " can be divided by 2.");
         } else {
@@ -183,24 +183,24 @@ public class Main {
         }
     }
 
-    public static void caseLowerUpper(String string) {
+    private static void caseLowerUpper(String string) {
         System.out.println(string.toLowerCase());
         System.out.println(string.toUpperCase());
     }
 
-    public static void divideNormalRest(int a, int b) {
+    private static void divideNormalRest(int a, int b) {
         double result = (a / b) - (a % b);
         System.out.println("Difference of normal and rest divison: " + result);
     }
 
-    public static void randomSumMult() {
+    private static void randomSumMult() {
         int a = (int)(Math.random() * 11 + 10);
         int b = (int)(Math.random() * 11 + 10);
         System.out.println("Summary of number " + a + " and " + b + ": " + (a + b));
         System.out.println("Multiplication of number " + a + " and " + b + ": " + (a * b));
     }
 
-    public static void randomBigger() {
+    private static void randomBigger() {
         int a = (int)(Math.random() * 101);
         int b = (int)(Math.random() * 101);
         if (a > b) {
@@ -210,7 +210,7 @@ public class Main {
         }
     }
 
-    public static void hundredRandMaxMin() {
+    private static void hundredRandMaxMin() {
         Integer[] intArray = new Integer[100];
         for (int i = 0; i < intArray.length; i++) {
             int rand = (int)(Math.random() * 101);
@@ -219,14 +219,14 @@ public class Main {
         }
         int min = 100;
         int max = 0;
-        for (int i = 0; i < intArray.length; i++) {
-            if (intArray[i] > max) {
-                max = intArray[i];
+        for (Integer anIntArray : intArray) {
+            if (anIntArray > max) {
+                max = anIntArray;
             }
-            if (intArray[i] < min) {
-                min = intArray[i];
+            if (anIntArray < min) {
+                min = anIntArray;
             }
-            }
+        }
         System.out.println("Smallest number: " + min);
         System.out.println("Biggest number: " + max);
     }

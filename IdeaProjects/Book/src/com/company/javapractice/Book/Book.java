@@ -1,19 +1,19 @@
 package com.company.javapractice.Book;
 
 public class Book {
-    protected String title;
-    protected String author;
-    protected String publisher;
-    protected int publishDate;
+    private String title;
+    private String author;
+    private String publisher;
+    private int publishDate;
 
-    public Book(String title, String author, String publisher, int publishDate) {
+    Book(String title, String author, String publisher, int publishDate) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publishDate = publishDate;
     }
 
-    public Book() {
+    Book() {
         this.title = "Objektumorientált Tervezés és Programozás";
         this.author = "Angster Erzsébet";
         this.publisher = "Kiskapu";

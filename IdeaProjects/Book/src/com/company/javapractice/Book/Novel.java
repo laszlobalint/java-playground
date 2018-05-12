@@ -1,8 +1,9 @@
 package com.company.javapractice.Book;
 
 public class Novel extends Book {
-    String style;
-    public static int counterNovel = 0;
+
+    private String style;
+    public static int counterNovel;
 
     public Novel(String title, String author, String publisher, int publishDate, String style) {
         super(title, author, publisher, publishDate);
