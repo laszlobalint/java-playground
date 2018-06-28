@@ -14,7 +14,7 @@
       <Pane id="basePane" fx:id="basePane" prefHeight="306.0" prefWidth="400.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebfffd" height="315.0" stroke="BLACK" strokeType="INSIDE" width="410.0" />
-            <Text layoutX="40.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give five number between 1 and 99!" wrappingWidth="385.59375">
+            <Text layoutX="40.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Give five numbers between 1 and 99!" wrappingWidth="385.59375">
                <font>
                   <Font name="Calibri Light" size="18.0" />
                </font></Text>

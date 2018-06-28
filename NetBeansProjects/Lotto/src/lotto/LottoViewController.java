@@ -133,6 +133,7 @@ public class LottoViewController implements Initializable {
         label5.setText("" + genNum5);
         
         resultCheck(userNumbers);
+        return;
     }
     
     private void alert(String text){
@@ -144,8 +145,8 @@ public class LottoViewController implements Initializable {
     
     private void resultCheck(ArrayList<Integer> userNumbers){
         int result = 0;
-        for(int i=0;i<userNumbers.size();i++){
-            if(userNumbers.get(i) == genNum1 || userNumbers.get(i) == genNum2 || userNumbers.get(i) == genNum3 || userNumbers.get(i) == genNum4 || userNumbers.get(i) == genNum5)
+        for (int i=0; i < userNumbers.size(); i++){
+            if (userNumbers.get(i) == genNum1 || userNumbers.get(i) == genNum2 || userNumbers.get(i) == genNum3 || userNumbers.get(i) == genNum4 || userNumbers.get(i) == genNum5)
                 result++;
         }
         
