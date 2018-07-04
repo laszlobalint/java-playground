@@ -16,10 +16,11 @@ public class LottoViewController implements Initializable {
     //<editor-fold defaultstate="collapsed" desc="Class Variables">
     private final int MAX = 99;
     private final int MIN = 1;
-    private final String WIN0 = "You did not win";
-    private final String WIN1 = "You've got one on lotto";
-    private final String WIN2 = "You've got two on lotto";
-    private final String WIN3 = "Three hits! This is something.";
+    
+    private final String WIN0 = "You did not win!";
+    private final String WIN1 = "You've got one hit on lotto!";
+    private final String WIN2 = "You've got two hits on lotto!";
+    private final String WIN3 = "Three hits! Now, this is something.";
     private final String WIN4 = "Four hits! Be proud of yourself.";
     private final String WIN5 = "Full lotto hits! Congratulations!";
     
@@ -28,6 +29,7 @@ public class LottoViewController implements Initializable {
     private int genNum3;
     private int genNum4;
     private int genNum5;
+    
     private int selNum1;
     private int selNum2;
     private int selNum3;
@@ -76,7 +78,6 @@ public class LottoViewController implements Initializable {
         alertText.setText("");
     }
     
-    
     @FXML
     private void handleButtonAction(ActionEvent event) {
         genNum1 = 0;
@@ -88,8 +89,7 @@ public class LottoViewController implements Initializable {
         genNum2 = getRandomNumber();
         genNum3 = getRandomNumber();
         genNum4 = getRandomNumber();
-        genNum5 = getRandomNumber();
-        
+        genNum5 = getRandomNumber();   
         calculate();
     }
     
@@ -113,13 +113,13 @@ public class LottoViewController implements Initializable {
         selectedNumbers.add(selNum4);
         selectedNumbers.add(selNum5);
         if (selectedNumbers.size() < 5){
-           alert("The numbers have to be different!");
+           alert("All numbers have to be different!");
            return;
         }
 
         ArrayList<Integer> userNumbers = new ArrayList<>(selectedNumbers);
 
-        for(Integer number : userNumbers){
+        for (Integer number : userNumbers){
             if (number < MIN || number > MAX){
                 alert("All number have to be from 1 to 99!");
                 return;

@@ -13,31 +13,30 @@ public class Person {
         this.email = new SimpleStringProperty("");
     }
     
-    
     public Person(String fName, String lName, String email) {
         this.firstName = new SimpleStringProperty(fName);
         this.lastName = new SimpleStringProperty(lName);
         this.email = new SimpleStringProperty(email);
     }
 
-    public SimpleStringProperty getFirstName() {
-        return firstName;
+    public String getFirstName() {
+        return firstName.get();
     }
     
     public void setFirstName(String fName) {
         firstName.set(fName);
     }
 
-    public SimpleStringProperty getLastName() {
-        return lastName;
+    public String getLastName() {
+        return lastName.get();
     }
     
     public void setLastName(String lName) {
         lastName.set(lName);
     }
 
-    public SimpleStringProperty getEmail() {
-        return email;
+    public String getEmail() {
+        return email.get();
     }
     
     public void setEmail(String mail) {
