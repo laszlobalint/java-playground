@@ -22,7 +22,12 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="579.0" prefWidth="502.0">
                <children>
-                  <Pane id="exportPane" fx:id="exportPane" prefHeight="579.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-202.0" AnchorPane.topAnchor="0.0" />
+                  <Pane id="exportPane" fx:id="exportPane" prefHeight="579.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-202.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Button id="exportButton" fx:id="exportButton" layoutX="199.0" layoutY="280.0" mnemonicParsing="false" text="Save PDF" />
+                        <TextField id="inputExport" fx:id="inputExport" layoutX="101.0" layoutY="213.0" prefHeight="25.0" prefWidth="282.0" />
+                        <Label alignment="CENTER" layoutX="147.0" layoutY="167.0" prefHeight="25.0" prefWidth="191.0" text="Enter the name of the file:" textAlignment="CENTER" />
+                     </children></Pane>
                   <Pane id="contactPane" fx:id="contactPane" prefHeight="579.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-202.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <TableView id="table" fx:id="table" editable="true" prefHeight="432.0" prefWidth="614.0">
@@ -38,7 +43,7 @@
                         <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="460.0" text="Lastname" />
                         <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="489.0" text="Firstname" />
                         <Label alignment="CENTER_RIGHT" layoutX="43.0" layoutY="517.0" prefHeight="15.0" prefWidth="64.0" text="E-mail" />
-                        <Button id="addNewContactButton" fx:id="addNewContactButton" layoutX="319.0" layoutY="484.0" mnemonicParsing="false" text="Submit" />
+                        <Button id="addNewContactButton" fx:id="addNewContactButton" onAction="#addContact" layoutX="319.0" layoutY="484.0" mnemonicParsing="false" text="Submit" />
                      </children>
                   </Pane>
                </children>
