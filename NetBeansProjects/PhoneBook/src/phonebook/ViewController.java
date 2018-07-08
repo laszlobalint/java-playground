@@ -47,7 +47,7 @@ public class ViewController implements Initializable {
     @FXML
     Pane exportPane;
     @FXML
-    TextField exportInput;
+    TextField inputExportName;
     @FXML
     Button exportButton;
     
@@ -68,6 +68,16 @@ public class ViewController implements Initializable {
         inputEmail.clear();
         }
     }
+    
+    @FXML
+    public void exportList(ActionEvent event) {
+        String fileName = inputExportName.getText();
+        fileName = fileName.replace("\\s+", "");
+        if (fileName != null && !fileName.equals("")) {
+            PdfGenerator pdfCreator = new PdfGenerator();
+            pdfCreator.pdfGenerator(fileName, data);
+        }
+    }    
     
     public void setTableData() {
         TableColumn lastNameCol = new TableColumn("Lastname");
@@ -177,7 +187,6 @@ public class ViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         setTableData();
         setMenuData();
-        PdfGenerator pdfCreator = new PdfGenerator();
-        pdfCreator.pdfGenerator("fileName", "Test text");
+        
     }    
 }
