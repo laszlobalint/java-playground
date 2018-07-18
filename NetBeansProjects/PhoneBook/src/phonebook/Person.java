@@ -6,14 +6,24 @@ public class Person {
     private final SimpleStringProperty firstName;
     private final SimpleStringProperty lastName;
     private final SimpleStringProperty email;
+    private final SimpleStringProperty id;
 
     public Person() {
         this.firstName = new SimpleStringProperty("");
         this.lastName = new SimpleStringProperty("");
         this.email = new SimpleStringProperty("");
+        this.id = new SimpleStringProperty("");
     }
     
     public Person(String fName, String lName, String email) {
+        this.id = new SimpleStringProperty("");
+        this.firstName = new SimpleStringProperty(fName);
+        this.lastName = new SimpleStringProperty(lName);
+        this.email = new SimpleStringProperty(email);
+    }
+    
+    public Person(Integer id, String fName, String lName, String email) {
+        this.id = new SimpleStringProperty(String.valueOf(id));
         this.firstName = new SimpleStringProperty(fName);
         this.lastName = new SimpleStringProperty(lName);
         this.email = new SimpleStringProperty(email);
@@ -41,5 +51,13 @@ public class Person {
     
     public void setEmail(String mail) {
         email.set(mail);
+    }
+
+    public String getId() {
+        return id.get();
+    }
+    
+    public void setId(String fId) {
+        id.set(fId);
     }
 }
