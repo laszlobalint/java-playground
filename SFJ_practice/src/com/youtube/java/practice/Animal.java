@@ -1,8 +1,17 @@
 package com.youtube.java.practice;
 
-public class Animal {
+public abstract class Animal {
+
+    public Animal() {
+    }
+
     private String name;
     private int weigth;
+
+    public Animal(String name, int weigth) {
+        this.name = name;
+        this.weigth = weigth;
+    }
 
     protected void makeSound() {
         System.out.println("Animal sounds...");
