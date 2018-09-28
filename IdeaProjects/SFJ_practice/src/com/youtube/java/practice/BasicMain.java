@@ -1,5 +1,8 @@
 package com.youtube.java.practice;
 
+import com.youtube.java.practice.basicjava.Animal;
+import com.youtube.java.practice.basicjava.Cat;
+import com.youtube.java.practice.basicjava.Human;
 import com.youtube.java.practice.sentence.SentenceGenerator;
 
 import java.io.File;
@@ -9,14 +12,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FirstProject {
+public class BasicMain {
 
     public static void main(String[] args) throws Exception {
 
         System.out.println("Hello!");
 
-        FirstProject firstProject = new FirstProject();
-        String result = firstProject.censor("The dog is really cute.", "dog", "cat");
+        BasicMain basicMain = new BasicMain();
+        String result = basicMain.censor("The dog is really cute.", "dog", "cat");
         System.out.println(result);
 
         Human firstHuman = new Human();
@@ -72,7 +75,7 @@ public class FirstProject {
         try {
             FileReader fr = new FileReader(file);
         } catch (FileNotFoundException e) {
-            Logger.getLogger(FirstProject.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(BasicMain.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             System.out.println("This is shown in all cases!");
         }

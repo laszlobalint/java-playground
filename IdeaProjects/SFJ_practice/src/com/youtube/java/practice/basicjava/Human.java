@@ -1,4 +1,4 @@
-package com.youtube.java.practice;
+package com.youtube.java.practice.basicjava;
 
 public class Human {
     private String name = "Test Name";
