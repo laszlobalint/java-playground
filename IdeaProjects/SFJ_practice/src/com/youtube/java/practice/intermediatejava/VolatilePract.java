@@ -6,7 +6,8 @@ import java.util.logging.Logger;
 
 class TaskerClass extends  Thread {
 
-    private boolean runner = true;
+    // Protects against caching effects! (volatile) -> One thread can change the other.
+    private volatile boolean runner = true;
 
     @Override
     public void run() {
