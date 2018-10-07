@@ -8,9 +8,7 @@ public class NumberLetterCounts {
 
     public String run() {
         int sum = 0;
-        for (int i = 1; i<= 1000; i++) {
-            sum += toEnglish(i).length();
-        }
+        for (int i = 1; i <= 1000; i++) sum += toEnglish(i).length();
         return Integer.toString(sum);
     }
 
