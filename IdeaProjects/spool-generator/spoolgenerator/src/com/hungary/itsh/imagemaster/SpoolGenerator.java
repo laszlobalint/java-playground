@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
-public class Main {
+public class SpoolGenerator {
 
     private static int numOfDocs;
     private static String sourceFileExtension;
@@ -18,7 +18,7 @@ public class Main {
     private static String spoolName;
     private static String sep;
 
-    private static String currencies[] = {"EUR", "HUF", "RSD", "USD", "GBP"};
+    private static String currencies[] = {"EUR", "HUF", "RSD", "USD", "GBP", "BRL", "AUD", "CAD", "HRK"};
 
     public static void main(String[] args) {
 	    numOfDocs = Integer.parseInt(args[0]);
@@ -26,6 +26,7 @@ public class Main {
 	    attachmentFileExtension = args[2];
 	    spoolName = args[3];
         sep = args[4];
+
         createRandomDocument();
     }
 
@@ -63,14 +64,14 @@ public class Main {
 
     private static String getRandomDate() {
         GregorianCalendar gc = new GregorianCalendar();
-        int year = randBetween(1980, 2019);
+        int year = randomIntBetween(1980, 2019);
         gc.set(gc.YEAR, year);
-        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
+        int dayOfYear = randomIntBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
         gc.set(gc.DAY_OF_YEAR, dayOfYear);
         return (gc.get(gc.DAY_OF_MONTH)) + "." + (gc.get(gc.MONTH) + 1) + "." + (gc.get(gc.YEAR));
     }
 
-    private static int randBetween(int start, int end) {
+    private static int randomIntBetween(int start, int end) {
         return start + (int)Math.round(Math.random() * (end - start));
     }
 
