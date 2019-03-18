@@ -27,10 +27,10 @@ public class KEM {
     private static void getDataFromXMLFile() throws IOException {
         String[] columns = {"Username", "Admin", "DateField", "Read", "Modify", "Create", "Open"};
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("KEM");
+        Sheet sheet = workbook.createSheet("KEM_users");
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
-        headerFont.setFontHeightInPoints((short) 14);
+        headerFont.setFontHeightInPoints((short) 12);
         headerFont.setColor(IndexedColors.BLACK.getIndex());
         CellStyle headerCellStyle = workbook.createCellStyle();
         headerCellStyle.setFont(headerFont);
@@ -123,11 +123,11 @@ public class KEM {
                         Row row = sheet.createRow(rowNum++);
                         row.createCell(0).setCellValue(userName);
                         row.createCell(1).setCellValue(admin);
-                        row.createCell(2).setCellValue(date);
-                        row.createCell(3).setCellValue(read);
-                        row.createCell(4).setCellValue(modify);
-                        row.createCell(5).setCellValue(create);
-                        row.createCell(6).setCellValue(open);
+                        row.createCell(2).setCellValue(removeLastChar(date));
+                        row.createCell(3).setCellValue(removeLastChar(read));
+                        row.createCell(4).setCellValue(removeLastChar(modify));
+                        row.createCell(5).setCellValue(removeLastChar(create));
+                        row.createCell(6).setCellValue(removeLastChar(open));
                     }
                 } else {
                     line = br.readLine();
@@ -147,8 +147,18 @@ public class KEM {
         workbook.close();
     }
 
+    // Finds and cuts the value from the line
     private static String getValue(String line) {
         String value = line.substring(line.indexOf(">") + 1, line.lastIndexOf("<"));
         return value;
+    }
+
+    // Removes the ; character from the end of the string
+    private static String removeLastChar(String value) {
+        if (value.length() > 1) {
+            return value.substring(0, value.length() - 1);
+        } else {
+            return value;
+        }
     }
 }
